@@ -1,0 +1,1 @@
+# Photoshop-Rotation-Cutting-Editing-Creative-Glitch-Progress-Documentation
