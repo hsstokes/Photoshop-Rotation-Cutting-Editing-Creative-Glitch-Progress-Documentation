@@ -823,8 +823,50 @@ footer {
   <section id="overview" class="section active">
     <div class="s-banner b-teal">🏠 Welcome — What You Will Do Today</div>
 
-    <p>In this session you will practise two key Photoshop skills — <strong>cutting and editing objects</strong> and <strong>creative text and glitch</strong> — then document and reflect on your progress.</p>
+    <!-- STUDENT EXAMPLES HERO -->
+    <div style="margin-bottom:1.5rem;">
+      <p style="margin-bottom:0.8rem;">Use <strong>Photoshop skills</strong> to digitally edit your work, applying the techniques from today's video tutorials. Share your final piece on the Padlet wall by the end of the session. <strong>Outstanding work will be showcased.</strong></p>
 
+      <h2 style="margin-top:0.5rem;">What You Can Create — Student Examples</h2>
+      <p style="font-size:0.82rem;color:#555;margin-bottom:1rem;">These were made by students in previous sessions using the same glitch and text techniques you will learn today.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:1rem;">
+
+        <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/luca_monstead.jpg','Luca Monstead')">
+          <img src="images/student-examples/luca_monstead.jpg" alt="Student work by Luca Monstead"
+            style="width:100%;height:220px;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
+            <strong>Luca Monstead</strong> — Glitch & Text Exercise
+          </div>
+        </div>
+
+        <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/juliette.png','Juliette')">
+          <img src="images/student-examples/juliette.png" alt="Student work by Juliette"
+            style="width:100%;height:220px;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
+            <strong>Juliette</strong> — Glitch & Text Exercise
+          </div>
+        </div>
+
+        <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/Balnur_Kuanbek.jpg','Balnur Kuanbek')">
+          <img src="images/student-examples/Balnur_Kuanbek.jpg" alt="Student work by Balnur Kuanbek"
+            style="width:100%;height:220px;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
+            <strong>Balnur Kuanbek</strong> — Glitch & Text Exercise
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;flex-direction:column;padding:20px;cursor:zoom-out;">
+      <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:82vh;border-radius:8px;object-fit:contain;">
+      <p id="lb-caption" style="color:#ccc;font-family:'Space Mono',monospace;font-size:0.75rem;margin-top:10px;text-align:center;"></p>
+      <p style="color:#888;font-size:0.7rem;margin-top:4px;">Click anywhere to close</p>
+    </div>
+
+    <!-- TASK CARDS -->
     <div class="overview-grid">
       <div class="ov-card ov-t1" onclick="goTo('task1')">
         <div class="ov-icon">✂️</div>
@@ -852,7 +894,7 @@ footer {
     <div class="tip-box">
       <h4>💡 Set Up Checklist</h4>
       <ul>
-        <li>Open Photoshop and create a new <strong>A3 landscape document · 300 dpi · CMYK</strong></li>
+        <li>Open Photoshop — create new document: <strong>A3 Landscape · 420×297mm · 300 dpi · CMYK · White background</strong></li>
         <li>Have a scanned image or photo ready to work with</li>
         <li>Have your artist research folder open</li>
         <li>Keyboard shortcut tip — <span class="key">Shift + key</span> cycles through tool sub-groups</li>
@@ -1065,6 +1107,62 @@ footer {
 
     <div class="info-box pink">
       <strong>Document setup:</strong> A3 Landscape · 420×297mm · 300 dpi · CMYK · White background
+    </div>
+
+    <h2>Student Examples — What You Can Achieve</h2>
+    <p style="font-size:0.82rem;color:#555;margin-bottom:1rem;">These outcomes were created by students in previous sessions — use them as inspiration for your own work today.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:1.5rem;">
+      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);">
+        <img src="images/student-examples/luca_monstead.jpg" alt="Luca Monstead student work"
+          style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
+        <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
+          <strong>Luca Monstead</strong>
+        </div>
+      </div>
+      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);">
+        <img src="images/student-examples/juliette.png" alt="Juliette student work"
+          style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
+        <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
+          <strong>Juliette</strong>
+        </div>
+      </div>
+      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);">
+        <img src="images/student-examples/Balnur_Kuanbek.jpg" alt="Balnur Kuanbek student work"
+          style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
+        <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
+          <strong>Balnur Kuanbek</strong>
+        </div>
+      </div>
+    </div>
+
+    <h2>Font Guidance</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.5rem;">
+
+      <div style="background:#e8f5e9;border:2px solid #4caf50;border-radius:12px;padding:16px;">
+        <h3 style="color:#2e7d32;margin:0 0 10px;font-size:0.84rem;">✅ Recommended Fonts</h3>
+        <p style="font-size:0.8rem;color:#555;margin-bottom:10px;">These work well for research pages — clean, editorial, structured.</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="background:white;border-radius:6px;padding:8px 12px;font-family:'Courier New',monospace;font-size:0.9rem;border-left:3px solid #4caf50;">Andale Mono</div>
+          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #4caf50;">Orator Std</div>
+          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #4caf50;">Typewriter Condensed</div>
+          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #4caf50;">OldNewspaperTypes <span style="font-size:0.7rem;color:#888;">— subheadings &amp; titles</span></div>
+        </div>
+        <p style="font-size:0.75rem;color:#555;margin-top:10px;">You can also download fonts from <a href="https://www.dafont.com" target="_blank" style="color:#2e7d32;">dafont.com</a> or <a href="https://fonts.google.com" target="_blank" style="color:#2e7d32;">fonts.google.com</a> — on your own computer only due to admin restrictions.</p>
+      </div>
+
+      <div style="background:#ffebee;border:2px solid #e53935;border-radius:12px;padding:16px;">
+        <h3 style="color:#c62828;margin:0 0 10px;font-size:0.84rem;">🚫 Banned Fonts — Do Not Use</h3>
+        <p style="font-size:0.8rem;color:#555;margin-bottom:10px;">These are not appropriate for academic design work.</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #e53935;text-decoration:line-through;color:#aaa;">Chalkboard</div>
+          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #e53935;text-decoration:line-through;color:#aaa;">Bradley Hand</div>
+          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #e53935;text-decoration:line-through;color:#aaa;">Chalkduster</div>
+        </div>
+        <div class="notice" style="margin-top:10px;font-size:0.8rem;"><strong>Why?</strong> These fonts undermine the visual quality and editorial feel of your research page. They read as informal and unprofessional in this context.</div>
+      </div>
+
     </div>
 
     <h2>Artist References</h2>
