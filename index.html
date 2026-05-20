@@ -400,6 +400,7 @@ li { margin-bottom: 3px; font-size: 0.9rem; line-height: 1.6; }
 .step-body p { font-size: 0.88rem; }
 .step-body ul { margin-left: 14px; margin-bottom: 0.6em; }
 .step-body li { font-size: 0.88rem; }
+.step-body img { max-height: 300px; object-fit: contain; background: #f5f5f5; }
 
 /* ── VIDEO EMBED ── */
 .vid-wrap {
@@ -410,7 +411,6 @@ li { margin-bottom: 3px; font-size: 0.9rem; line-height: 1.6; }
   border-radius: 8px;
   border: 2px solid var(--teal-mid);
   margin-top: 12px;
-  max-width: 600px;
   width: 100%;
 }
 
@@ -966,8 +966,8 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="images/object-selection-tool.jpg" alt="Object Selection Tool example" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
-          <img src="demos/object-selection-demo.gif" alt="Object Selection Tool demonstration" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px dashed #ea37a3;" onerror="this.style.display='none'">
+          <img src="images/object-selection-tool.jpg" alt="Object Selection Tool example" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="demos/object-selection-demo.gif" alt="Object Selection Tool demonstration" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px dashed #ea37a3;" onerror="this.style.display='none'">
           <ul>
             <li>Select <strong>Object Selection Tool (W)</strong> from toolbar</li>
             <li>Hover over your object — blue highlight previews the selection</li>
@@ -975,7 +975,7 @@ footer {
             <li>Press Delete to activate Content-Aware Fill</li>
           </ul>
           <div class="notice"><strong>Tip:</strong> Use Shift+click to add areas to your selection, Option+click to remove.</div>
-          <img src="images/object-selection-before-after.jpg" alt="Before and after Object Selection" style="max-width:480px;width:100%;display:block;margin:10px auto 0;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="images/object-selection-before-after.jpg" alt="Before and after Object Selection" style="max-width:100%;width:100%;display:block;margin:10px 0 0;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
         </div>
       </div>
 
@@ -986,8 +986,8 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="images/remove-tool-bar.jpg" alt="Remove Tool example" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
-          <img src="demos/remove-tool-demo.gif" alt="Remove Tool demonstration" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px dashed #ea37a3;" onerror="this.style.display='none'">
+          <img src="images/remove-tool-bar.jpg" alt="Remove Tool example" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="demos/remove-tool-demo.gif" alt="Remove Tool demonstration" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px dashed #ea37a3;" onerror="this.style.display='none'">
           <ul>
             <li>Select <strong>Remove Tool (J)</strong> from the Contextual Task Bar or use <span class="key">Shift+J</span> to cycle</li>
             <li>Adjust brush size to suit the element</li>
@@ -1004,7 +1004,7 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="images/pen-tool-cutout.jpg" alt="Pen Tool cutout example" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="images/pen-tool-cutout.jpg" alt="Pen Tool cutout example" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
           <ul>
             <li>Select <strong>Pen Tool (P)</strong> from the toolbar group</li>
             <li>Click to place anchor points around your object</li>
@@ -1061,7 +1061,7 @@ footer {
 
     <p>Use <strong>words from your artist research</strong> to create an image-based glitch composition. This explores how typography can express meaning, interruption, and emotion visually.</p>
 
-    <img src="glitch-sample.jpg" alt="Sample glitch composition" style="max-width:600px;width:100%;display:block;margin:1rem auto;border-radius:10px;border:2px solid #ea37a3;" onerror="this.style.display='none'">
+    <img src="glitch-sample.jpg" alt="Sample glitch composition" style="max-width:100%;width:100%;display:block;margin:1rem 0;border-radius:10px;border:2px solid #ea37a3;" onerror="this.style.display='none'">
 
     <div class="info-box pink">
       <strong>Document setup:</strong> A3 Landscape · 420×297mm · 300 dpi · CMYK · White background
@@ -1109,7 +1109,7 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="banner-step1-text-selection.jpg" alt="Keywords placed with monospaced fonts" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step1-text-selection.jpg" alt="Keywords placed with monospaced fonts" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
           <ul>
             <li>Choose a handful of <strong>words or short phrases</strong> from your artist research</li>
             <li>Open a new Photoshop document — A3 landscape · 300 dpi</li>
@@ -1127,7 +1127,7 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="banner-step2-rasterize.jpg" alt="Rasterized and duplicated layers" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step2-rasterize.jpg" alt="Rasterized and duplicated layers" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
           <ul>
             <li>In the Layers panel: right-click → <strong>Rasterize Type</strong></li>
             <li>Duplicate the rasterized layer: <span class="key">Cmd/Ctrl+J</span> — keeps a backup</li>
@@ -1143,7 +1143,7 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="banner-step3-create-glitches.jpg" alt="Creating glitch strips" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step3-create-glitches.jpg" alt="Creating glitch strips" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
           <ul>
             <li>Use <strong>Rectangular Marquee Tool (M)</strong> to select thin horizontal strips of text</li>
             <li>Press <span class="key">Cmd/Ctrl+J</span> to copy each strip to a new layer</li>
@@ -1160,7 +1160,7 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="banner-step4-wave.jpg" alt="Wave distortion on text" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step4-wave.jpg" alt="Wave distortion on text" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
           <ul>
             <li>Select your strips and <strong>Merge Layers: <span class="key">Cmd/Ctrl+E</span></strong></li>
             <li>Go to <strong>Filter → Distort → Wave</strong> for controlled ripple effects</li>
@@ -1183,7 +1183,7 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="banner-step5-layout-integration.jpg" alt="Glitch text integrated in layout" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step5-layout-integration.jpg" alt="Glitch text integrated in layout" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
           <ul>
             <li>Position the glitch text within your A3 composition</li>
             <li>Use as a background element or a feature component</li>
@@ -1200,7 +1200,7 @@ footer {
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <img src="banner-step6-save-reflect.jpg" alt="Saving PSD and JPEG" style="max-width:480px;width:100%;display:block;margin:0 auto 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step6-save-reflect.jpg" alt="Saving PSD and JPEG" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
           <ul>
             <li>Save as <strong>.PSD</strong> — all layers stay editable</li>
             <li>Export as <strong>.JPG</strong> for Padlet upload</li>
