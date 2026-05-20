@@ -867,13 +867,6 @@ footer {
       </div>
     </div>
 
-    <!-- LIGHTBOX -->
-    <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;flex-direction:column;padding:20px;cursor:zoom-out;">
-      <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:82vh;border-radius:8px;object-fit:contain;">
-      <p id="lb-caption" style="color:#ccc;font-family:'Space Mono',monospace;font-size:0.75rem;margin-top:10px;text-align:center;"></p>
-      <p style="color:#888;font-size:0.7rem;margin-top:4px;">Click anywhere to close</p>
-    </div>
-
     <!-- TASK CARDS -->
     <div class="overview-grid">
       <div class="ov-card ov-t1" onclick="goTo('task1')">
@@ -1121,21 +1114,21 @@ footer {
     <p style="font-size:0.82rem;color:#555;margin-bottom:1rem;">These outcomes were created by students in previous sessions — use them as inspiration for your own work today.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:1.5rem;">
-      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);">
-        <img src="images/student-examples/luca_monstead.jpg" alt="Luca Monstead student work"
+      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/luca_monstead.jpg','Luca Monstead')">
+        <img src="images/student-examples/luca_monstead.jpg"
           style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
         <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
           <strong>Luca Monstead</strong>
         </div>
       </div>
-      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);">
+      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/juliette.png','Juliette Prezi')">
         <img src="images/student-examples/juliette.png" alt="Juliette student work"
           style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
         <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
           <strong>Juliette Prezi</strong>
         </div>
       </div>
-      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);">
+      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/Balnur_Kuanbek.jpg','Balnur Kuanbek')">
         <img src="images/student-examples/Balnur_Kuanbek.jpg" alt="Balnur Kuanbek student work"
           style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
         <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
@@ -1526,6 +1519,13 @@ footer {
     </div>
   </section>
 
+  <!-- LIGHTBOX — global -->
+  <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;flex-direction:column;padding:20px;cursor:zoom-out;">
+    <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:82vh;border-radius:8px;object-fit:contain;">
+    <p id="lb-caption" style="color:#ccc;font-family:'Space Mono',monospace;font-size:0.75rem;margin-top:10px;text-align:center;"></p>
+    <p style="color:#888;font-size:0.7rem;margin-top:4px;">Click anywhere to close</p>
+  </div>
+
   <footer>© 2025 Photoshop Rotation · Thursday · IELS Level 5 · Inclusive Micro-Learning Series</footer>
 
 </div>
@@ -1561,6 +1561,20 @@ function toggleStep(header) {
 function tog(el) {
   el.classList.toggle('checked');
 }
+
+// ── LIGHTBOX ──
+function openLightbox(src, caption) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb-caption').textContent = caption;
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 // ── INIT ──
 document.getElementById('progressBar').style.width = '10%';
