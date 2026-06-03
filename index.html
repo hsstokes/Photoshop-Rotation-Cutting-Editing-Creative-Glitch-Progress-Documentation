@@ -5,916 +5,636 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Photoshop Rotation — Thursday</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
 
 :root {
-  --teal: #0a8080;
-  --teal-light: #e6ffff;
-  --teal-mid: #c0eeee;
+  --ink: #1a1a1a;
+  --paper: #f2ede8;
+  --teal: #0a7a7a;
+  --teal-light: #e0f0f0;
   --pink: #ea37a3;
   --pink-light: #fdf1f5;
-  --pink-mid: #f9c6e3;
   --purple: #6c35c9;
   --purple-light: #f3eeff;
-  --gold: #c87900;
-  --gold-light: #fff8e6;
   --blue: #2563a8;
   --blue-light: #eef4ff;
-  --dark: #1a1a2e;
-  --grid: #e0f0f0;
-  --bg: #f7fefe;
-  --white: #ffffff;
-  --shadow-sm: 0 2px 8px rgba(10,128,128,0.08);
-  --shadow-md: 0 4px 20px rgba(10,128,128,0.12);
-  --shadow-lg: 0 8px 32px rgba(10,128,128,0.16);
+  --gold: #c87900;
+  --gold-light: #fff8e6;
+  --warm-mid: #d4cfc8;
+  --grid: #ddd8d2;
+  --concrete: #8a8a8a;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background-color: var(--bg);
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--paper);
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 40px 40px;
-  background-attachment: fixed;
-  color: var(--dark);
-  padding: 20px 16px 60px;
-  font-size: 15px;
-  line-height: 1.6;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-/* ── CONTAINER ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%; left: 48%;
+  width: 4px; height: 120vh;
+  background: rgba(255,255,255,0.6);
+  transform: rotate(12deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .container {
-  max-width: 1100px;
+  max-width: 1060px;
   margin: 0 auto;
-  background: rgba(255,255,255,0.97);
-  border: 2px solid var(--teal-mid);
-  border-radius: 16px;
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
+  padding: 36px 28px 60px;
+  position: relative;
+  z-index: 1;
 }
 
-/* ── HEADER ── */
+/* HEADER */
 .site-header {
-  background: linear-gradient(135deg, var(--teal) 0%, #0d6060 60%, #1a4a7a 100%);
-  padding: 2.5rem 2.5rem 2rem;
-  position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 16px;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 18px;
+  margin-bottom: 10px;
 }
-
-.site-header::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-}
-
-.site-header::after {
-  content: '';
-  position: absolute;
-  bottom: -30px; left: 30%;
-  width: 300px; height: 120px;
-  border-radius: 50%;
-  background: rgba(234,55,163,0.12);
-}
-
-.header-label {
+.header-eyebrow {
   font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 3px;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 0.5rem;
+  color: var(--teal);
+  margin-bottom: 6px;
 }
-
 .site-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.site-header h1 em { color: var(--teal); font-style: italic; }
+.header-meta {
   font-family: 'Space Mono', monospace;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: white;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 1;
+  font-size: 0.68rem;
+  text-align: right;
+  color: var(--concrete);
+  line-height: 1.8;
 }
 
-.header-sub {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.75);
-  position: relative;
-  z-index: 1;
-}
-
-.timing-row {
+/* TIMING STRIP */
+.timing-strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 1.2rem;
-  position: relative;
-  z-index: 1;
+  gap: 6px;
+  margin-bottom: 16px;
 }
-
-.t-pill {
+.t-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
   font-family: 'Space Mono', monospace;
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 20px;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.12);
-  color: white;
+  border: 2px solid;
 }
 
-/* ── PROGRESS ── */
-.progress-wrap {
-  padding: 0.6rem 2.5rem 0;
-  background: rgba(230,255,255,0.5);
-  border-bottom: 1px solid var(--teal-mid);
-}
-
-.progress-bar-outer {
-  height: 5px;
-  background: var(--teal-mid);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 0.5rem;
-}
-
-.progress-bar-inner {
+/* PROGRESS */
+.progress-wrap { height: 6px; background: var(--warm-mid); margin-bottom: 18px; }
+.progress-fill {
   height: 100%;
-  width: 20%;
-  background: linear-gradient(90deg, var(--teal), var(--pink));
-  border-radius: 4px;
+  background: linear-gradient(90deg, var(--pink), var(--teal));
   transition: width 0.4s ease;
 }
 
-/* ── TAB NAV ── */
-.tab-nav {
+/* NAV GRID */
+.nav-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 0;
-  border-bottom: 2px solid var(--teal-mid);
-  background: rgba(230,255,255,0.3);
+  gap: 7px;
+  margin-bottom: 28px;
 }
+@media (max-width: 640px) { .nav-grid { grid-template-columns: repeat(3, 1fr); } }
 
-.tab-btn {
+.nav-block {
+  border: 2px solid var(--warm-mid);
+  background: white;
+  padding: 12px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Space Mono', monospace;
+  border-radius: 3px;
+  min-height: 66px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  padding: 12px 6px;
-  cursor: pointer;
-  border: none;
-  border-right: 1px solid var(--teal-mid);
-  background: transparent;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: #888;
-  transition: all 0.2s;
-  position: relative;
 }
+.nav-block:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+.nav-block.active { background: var(--ink); color: white; border-color: var(--ink); }
+.nav-block .nav-icon { font-size: 1.2rem; }
+.nav-block .nav-label { font-weight: 700; font-size: 0.68rem; }
+.nav-block .nav-sub { color: var(--concrete); font-size: 0.58rem; }
+.nav-block.active .nav-sub { color: var(--warm-mid); }
 
-.tab-btn:last-child { border-right: none; }
-
-.tab-btn .tab-icon { font-size: 1.2rem; }
-.tab-btn .tab-label { font-size: 0.58rem; }
-.tab-btn .tab-time { font-size: 0.52rem; opacity: 0.6; font-weight: 400; }
-
-.tab-btn:hover { background: var(--teal-light); color: var(--teal); }
-
-.tab-btn.active {
-  color: white;
-  background: var(--teal);
-}
-
-.tab-btn.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 50%;
-  transform: translateX(-50%);
-  width: 0; height: 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 7px solid var(--teal);
-}
-
-.tab-btn[data-tab="task2"].active { background: var(--pink); }
-.tab-btn[data-tab="task2"].active::after { border-top-color: var(--pink); }
-.tab-btn[data-tab="task3"].active { background: var(--purple); }
-.tab-btn[data-tab="task3"].active::after { border-top-color: var(--purple); }
-.tab-btn[data-tab="task4"].active { background: var(--blue); }
-.tab-btn[data-tab="task4"].active::after { border-top-color: var(--blue); }
-.tab-btn[data-tab="submit"].active { background: var(--gold); }
-.tab-btn[data-tab="submit"].active::after { border-top-color: var(--gold); }
-
-/* ── SECTIONS ── */
-.section { display: none; padding: 2rem 2.5rem; animation: fadeUp 0.3s ease; }
-.section.active { display: block; }
-
+/* SECTIONS */
+.section { display: none; }
+.section.active { display: block; animation: fadeUp 0.35s ease; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── SECTION BANNER ── */
-.s-banner {
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-  border: 2px solid;
+/* TYPOGRAPHY */
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 1.8rem 0 0.8rem;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-.b-teal { background: var(--teal-light); color: var(--teal); border-color: var(--teal); }
-.b-pink { background: var(--pink-light); color: var(--pink); border-color: var(--pink); }
-.b-purple { background: var(--purple-light); color: var(--purple); border-color: var(--purple); }
-.b-blue { background: var(--blue-light); color: var(--blue); border-color: var(--blue); }
-.b-gold { background: var(--gold-light); color: var(--gold); border-color: var(--gold); }
-
-/* ── TYPOGRAPHY ── */
-h2 {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--teal);
-  margin: 1.8rem 0 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 h2::before {
   content: '';
   display: inline-block;
-  width: 4px;
-  height: 16px;
+  width: 5px; height: 22px;
   background: var(--pink);
-  border-radius: 2px;
   flex-shrink: 0;
 }
-
 h3 {
   font-family: 'Space Mono', monospace;
   font-size: 0.82rem;
-  color: var(--pink);
-  margin: 0.8rem 0 0.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  margin: 1rem 0 0.5rem;
+}
+p { margin-bottom: 0.9em; font-size: 0.88rem; line-height: 1.8; }
+a { color: var(--teal); font-weight: 600; }
+a:hover { color: var(--pink); }
+ul { margin-left: 18px; margin-bottom: 0.8em; }
+li { font-size: 0.86rem; margin-bottom: 5px; line-height: 1.7; }
+
+.diagonal-rule {
+  height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--teal));
+  margin: 24px 0;
+  transform: skewX(-15deg);
 }
 
-p { margin-bottom: 0.8em; font-size: 0.92rem; line-height: 1.75; }
-a { color: var(--teal); }
-ul { margin-left: 1.2rem; }
-li { margin-bottom: 3px; font-size: 0.9rem; line-height: 1.6; }
-
-/* ── INFO / TIP BOXES ── */
-.info-box {
-  background: var(--teal-light);
-  border-left: 4px solid var(--teal);
-  padding: 11px 14px;
-  border-radius: 0 8px 8px 0;
-  margin: 0.8rem 0;
-  font-size: 0.88rem;
-}
-
-.info-box.pink { background: var(--pink-light); border-color: var(--pink); }
-.info-box.purple { background: var(--purple-light); border-color: var(--purple); }
-.info-box.blue { background: var(--blue-light); border-color: var(--blue); }
-.info-box.green { background: #e8f5e9; border-color: #4caf50; }
-.info-box strong { color: var(--teal); }
-.info-box.pink strong { color: var(--pink); }
-.info-box.purple strong { color: var(--purple); }
-.info-box ul { margin-left: 14px; margin-top: 5px; }
-.info-box li { margin-bottom: 3px; }
-
-.tip-box {
-  background: #fffbee;
-  border: 1.5px solid #f0c040;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin: 0.8rem 0;
-  font-size: 0.88rem;
-}
-
-.tip-box h4 {
+/* BANNERS */
+.section-banner {
+  padding: 12px 18px;
+  margin-bottom: 22px;
   font-family: 'Space Mono', monospace;
   font-size: 0.78rem;
-  color: #7a5800;
-  margin-bottom: 6px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-left: 6px solid currentColor;
+  border-radius: 0 4px 4px 0;
 }
+.b-teal   { background: var(--teal-light);   color: var(--teal);   }
+.b-pink   { background: var(--pink-light);   color: var(--pink);   }
+.b-purple { background: var(--purple-light); color: var(--purple); }
+.b-blue   { background: var(--blue-light);   color: var(--blue);   }
+.b-gold   { background: var(--gold-light);   color: var(--gold);   }
 
-/* ── KEY BADGE ── */
+/* INFO / NOTICE / TIP */
+.info-box {
+  border-left: 4px solid var(--teal);
+  background: var(--teal-light);
+  padding: 10px 14px;
+  border-radius: 0 4px 4px 0;
+  margin: 12px 0;
+  font-size: 0.86rem;
+}
+.info-box.pink   { background: var(--pink-light);   border-color: var(--pink);   }
+.info-box.purple { background: var(--purple-light); border-color: var(--purple); }
+.info-box.blue   { background: var(--blue-light);   border-color: var(--blue);   }
+.info-box.green  { background: #e8f5e9; border-color: #4caf50; }
+.info-box strong { color: var(--teal); }
+.info-box.pink strong   { color: var(--pink);   }
+.info-box.purple strong { color: var(--purple); }
+.info-box ul { margin-left: 14px; margin-top: 5px; }
+
+.notice {
+  background: rgba(234,55,163,0.08);
+  border-left: 4px solid var(--pink);
+  padding: 10px 14px;
+  margin: 12px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.84rem;
+}
+.notice strong { color: var(--pink); }
+
+.tip-box {
+  background: #fffbea;
+  border: 2px solid #e6c200;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 0.84rem;
+}
+.tip-box h4 { color: #a08800; font-family: 'Space Mono', monospace; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 6px; }
+.tip-box ul { margin-left: 14px; }
+
+/* KEY BADGE */
 .key {
   display: inline-block;
   background: #f2f2f2;
   border: 1px solid #ccc;
-  border-bottom: 2px solid #aaa;
-  border-radius: 4px;
-  padding: 1px 7px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.76em;
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-family: monospace;
+  font-size: 0.8em;
   margin: 0 2px;
 }
 
-/* ── STEPS ACCORDION ── */
+/* ACCORDION STEPS */
 .steps-list { margin: 1rem 0; }
-
 .step-item {
   background: white;
-  border-radius: 12px;
+  border-radius: 4px;
   margin-bottom: 8px;
-  box-shadow: var(--shadow-sm);
-  border: 1.5px solid #e8f4f4;
+  border: 2px solid var(--warm-mid);
   overflow: hidden;
-  transition: box-shadow 0.2s;
 }
-
-.step-item:hover { box-shadow: var(--shadow-md); }
-
 .step-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 13px 16px;
+  padding: 12px 14px;
   cursor: pointer;
   user-select: none;
   transition: background 0.2s;
 }
-
 .step-header:hover { background: var(--teal-light); }
-
 .step-num {
-  width: 30px;
-  height: 30px;
+  width: 28px; height: 28px;
   background: var(--teal);
   color: white;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-weight: 700; font-size: 0.82rem;
   flex-shrink: 0;
 }
+.step-title-text { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--teal); font-size: 0.84rem; flex: 1; }
+.step-toggle { font-size: 0.75rem; color: var(--concrete); }
+.step-body { padding: 0 14px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.2s; }
+.step-body.open { padding: 0 14px 14px; max-height: 2400px; }
+.step-body ul { margin-left: 14px; }
+.step-body li { font-size: 0.84rem; margin-bottom: 4px; line-height: 1.6; }
+.step-body p { font-size: 0.84rem; margin-bottom: 0.6em; }
 
-.step-title-text {
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  color: var(--teal);
-  font-size: 0.88rem;
-  flex: 1;
+/* STEP IMAGES */
+.step-img {
+  width: 100%; display: block;
+  margin: 0 0 10px;
+  border: 2px solid var(--warm-mid);
+  border-radius: 3px;
 }
+.step-img.highlight { border-color: var(--pink); border-style: dashed; }
 
-.step-toggle {
-  font-size: 0.75rem;
-  color: #aaa;
-  transition: transform 0.25s;
-}
-
-.step-body {
-  padding: 0 16px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.2s;
-}
-
-.step-body.open {
-  padding: 0 16px 16px;
-  max-height: 2400px;
-}
-
-.step-body p { font-size: 0.88rem; }
-.step-body ul { margin-left: 14px; margin-bottom: 0.6em; }
-.step-body li { font-size: 0.88rem; }
-.step-body img { max-height: none; object-fit: contain; background: #f5f5f5; }
-
-/* ── VIDEO EMBED ── */
+/* VIDEO */
 .vid-wrap {
   position: relative;
   padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 8px;
-  border: 2px solid var(--teal-mid);
-  margin-top: 12px;
-  width: 100%;
+  height: 0; overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  margin: 12px 0;
 }
+.vid-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-.vid-wrap iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  border: none;
-}
-
-/* ── ARTIST GRID ── */
-.artist-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-  margin: 1rem 0;
-}
-
-.artist-card {
-  background: white;
-  border: 1.5px solid var(--teal-mid);
-  border-radius: 12px;
-  padding: 14px;
-  text-align: center;
-  transition: all 0.25s;
-}
-
-.artist-card:hover {
-  border-color: var(--pink);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-.artist-card h3 {
-  color: var(--pink);
-  font-size: 0.8rem;
-  margin: 0.5rem 0 0.3rem;
-}
-
-.artist-card p {
-  font-size: 0.76rem;
-  color: #555;
-  margin: 0;
-}
-
-.artist-icon { font-size: 1.8rem; }
-
-/* ── CHECKLIST ── */
-.checklist {
-  background: white;
-  border: 2px solid var(--teal);
-  border-radius: 12px;
-  padding: 16px;
-  margin: 1.5rem 0;
-  box-shadow: var(--shadow-sm);
-}
-
-.checklist.pink { border-color: var(--pink); }
-.checklist.purple { border-color: var(--purple); }
-.checklist.blue { border-color: var(--blue); }
-.checklist.gold { border-color: var(--gold); }
-
-.checklist h3 {
-  font-family: 'Space Mono', monospace;
-  text-align: center;
-  margin: 0 0 12px;
-  padding-bottom: 8px;
-  border-bottom: 2px dashed var(--teal);
-  font-size: 0.82rem;
-  color: var(--teal);
-}
-
-.checklist.pink h3 { color: var(--pink); border-color: var(--pink); }
-.checklist.purple h3 { color: var(--purple); border-color: var(--purple); }
-.checklist.blue h3 { color: var(--blue); border-color: var(--blue); }
-.checklist.gold h3 { color: var(--gold); border-color: var(--gold); }
-
-.ci {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 9px;
-}
-
-.chk {
-  width: 22px;
-  height: 22px;
-  border: 2px solid var(--teal);
-  border-radius: 5px;
-  flex-shrink: 0;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.2s;
-  margin-top: 1px;
-}
-
-.checklist.pink .chk { border-color: var(--pink); }
-.checklist.purple .chk { border-color: var(--purple); }
-.checklist.blue .chk { border-color: var(--blue); }
-.checklist.gold .chk { border-color: var(--gold); }
-
-.chk.checked {
-  background: var(--teal);
-}
-
-.checklist.pink .chk.checked { background: var(--pink); }
-.checklist.purple .chk.checked { background: var(--purple); }
-.checklist.blue .chk.checked { background: var(--blue); }
-.checklist.gold .chk.checked { background: var(--gold); }
-
-.chk.checked::after {
-  content: "✓";
-  position: absolute;
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
-  top: 0px;
-  left: 3px;
-}
-
-.cl {
-  font-size: 0.88rem;
-  color: var(--dark);
-  padding-top: 1px;
-}
-
-/* ── OVERVIEW CARDS ── */
+/* OVERVIEW CARDS */
 .overview-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
   margin: 1.2rem 0;
 }
-
 .ov-card {
-  border-radius: 12px;
-  padding: 16px 12px;
-  text-align: center;
   border: 2px solid;
-  transition: all 0.25s;
+  border-radius: 3px;
+  padding: 14px 10px;
+  text-align: center;
   cursor: pointer;
+  transition: all 0.2s;
 }
-
-.ov-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.ov-card h4 { font-family: 'Space Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.ov-card p { font-size: 0.78rem; margin: 0; opacity: 0.85; }
-.ov-card .ov-icon { font-size: 1.8rem; margin-bottom: 6px; }
-
-.ov-t1 { background: var(--teal-light); border-color: var(--teal); color: var(--teal); }
-.ov-t2 { background: var(--pink-light); border-color: var(--pink); color: var(--pink); }
+.ov-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+.ov-card .ov-icon { font-size: 1.6rem; margin-bottom: 6px; }
+.ov-card h4 { font-family: 'Space Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.ov-card p { font-size: 0.74rem; margin: 0; }
+.ov-t1 { background: var(--teal-light);   border-color: var(--teal);   color: var(--teal);   }
+.ov-t2 { background: var(--pink-light);   border-color: var(--pink);   color: var(--pink);   }
 .ov-t3 { background: var(--purple-light); border-color: var(--purple); color: var(--purple); }
-.ov-t4 { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
-.ov-sub { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+.ov-sub{ background: var(--gold-light);   border-color: var(--gold);   color: var(--gold);   }
 
-/* ── TOOL REFERENCE CARDS ── */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
-  margin: 1rem 0;
-}
-
+/* TOOL CARDS */
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 1rem 0; }
 .tool-card {
   background: white;
-  border: 1.5px solid var(--teal-mid);
-  border-radius: 12px;
-  padding: 16px;
+  border: 2px solid var(--warm-mid);
   border-top: 4px solid var(--teal);
-  transition: all 0.25s;
+  border-radius: 3px;
+  padding: 14px;
 }
-
-.tool-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.tool-card.pink { border-top-color: var(--pink); }
+.tool-card.pink   { border-top-color: var(--pink);   }
 .tool-card.purple { border-top-color: var(--purple); }
-
-.tool-card h3 {
-  color: var(--teal);
-  font-size: 0.84rem;
-  margin: 0 0 8px;
-}
-
-.tool-card.pink h3 { color: var(--pink); }
+.tool-card h3 { color: var(--teal); font-size: 0.82rem; margin: 0 0 8px; }
+.tool-card.pink h3   { color: var(--pink);   }
 .tool-card.purple h3 { color: var(--purple); }
-
 .tool-card ul { margin-left: 14px; }
-.tool-card li { font-size: 0.82rem; margin-bottom: 4px; }
+.tool-card li { font-size: 0.8rem; margin-bottom: 3px; }
 
-/* ── SUBMIT BOX ── */
+/* STUDENT EXAMPLE CARDS */
+.eg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 1rem 0; }
+.eg-card {
+  background: white;
+  border: 2px solid var(--warm-mid);
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: zoom-in;
+  transition: all 0.2s;
+}
+.eg-card:hover { border-color: var(--pink); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+.eg-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.eg-cap { padding: 7px 10px; font-family: 'Space Mono', monospace; font-size: 0.66rem; background: var(--ink); color: white; }
+
+/* ARTIST GRID */
+.artist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 1rem 0; }
+.artist-card {
+  background: white;
+  border: 2px solid var(--warm-mid);
+  border-radius: 3px;
+  padding: 12px;
+  text-align: center;
+  transition: all 0.2s;
+}
+.artist-card:hover { border-color: var(--pink); transform: translateY(-3px); }
+.artist-card img { width: 100%; height: 90px; object-fit: cover; border-radius: 2px; border: 2px solid var(--pink); margin-bottom: 6px; }
+.artist-card h3 { color: var(--pink); font-size: 0.76rem; margin: 0 0 3px; }
+.artist-card p { font-size: 0.7rem; color: var(--concrete); margin: 0; }
+
+/* FONT GUIDE */
+.font-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0; }
+@media (max-width: 560px) { .font-grid { grid-template-columns: 1fr; } }
+.font-box { border: 2px solid; border-radius: 3px; padding: 14px; }
+.font-box.good { background: #e8f5e9; border-color: #4caf50; }
+.font-box.bad  { background: #fff0f0; border-color: #e53935; }
+.font-box h3 { font-size: 0.78rem; margin: 0 0 8px; }
+.font-box.good h3 { color: #2e7d32; }
+.font-box.bad h3  { color: #c62828; }
+.font-sample {
+  background: white; border-radius: 2px; padding: 7px 10px;
+  margin-bottom: 5px; font-size: 0.88rem;
+  border-left: 3px solid #4caf50;
+}
+.font-box.bad .font-sample { border-color: #e53935; text-decoration: line-through; color: #aaa; }
+
+/* REFLECTION GRID */
+.reflection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1rem 0; }
+@media (max-width: 560px) { .reflection-grid { grid-template-columns: 1fr; } }
+.reflection-card {
+  background: white;
+  border: 2px solid var(--blue);
+  border-top: 4px solid var(--blue);
+  border-radius: 3px;
+  padding: 12px;
+}
+.reflection-card h3 { color: var(--blue); font-size: 0.78rem; margin-top: 0; }
+.reflection-card p { font-size: 0.76rem; color: var(--concrete); margin: 0; }
+
+/* SUBMIT BOX */
 .submit-box {
-  background: linear-gradient(135deg, var(--teal-light), white);
-  border: 2.5px solid var(--teal);
-  border-radius: 14px;
+  background: white;
+  border: 3px dashed var(--teal);
+  border-radius: 4px;
   padding: 22px;
   text-align: center;
   margin: 1.2rem 0;
 }
-
-.submit-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
-  margin: 1.2rem 0;
-}
-
+.submit-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 1.2rem 0; }
 .submit-item {
-  background: white;
-  border-radius: 10px;
-  padding: 12px 10px;
-  border-left: 4px solid var(--teal);
-  text-align: left;
+  background: var(--teal-light); border: 1px solid var(--teal);
+  border-radius: 3px; padding: 12px; text-align: left;
 }
-
-.submit-item:nth-child(2) { border-color: var(--pink); }
-.submit-item:nth-child(3) { border-color: var(--purple); }
-
-.submit-item h4 {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  color: var(--teal);
-  margin-bottom: 3px;
-}
-
-.submit-item:nth-child(2) h4 { color: var(--pink); }
+.submit-item:nth-child(2) { background: var(--pink-light);   border-color: var(--pink);   }
+.submit-item:nth-child(3) { background: var(--purple-light); border-color: var(--purple); }
+.submit-item h4 { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--teal); margin-bottom: 3px; }
+.submit-item:nth-child(2) h4 { color: var(--pink);   }
 .submit-item:nth-child(3) h4 { color: var(--purple); }
-.submit-item p { font-size: 0.72rem; color: #777; margin: 0; }
+.submit-item p { font-size: 0.7rem; color: var(--concrete); margin: 0; }
 
-.padlet-btn {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--teal), #0d6060);
-  color: white;
-  padding: 14px 30px;
-  border-radius: 12px;
+/* CTA BUTTONS */
+.cta-btn {
+  display: inline-block; color: white;
+  padding: 12px 24px; border-radius: 3px;
   text-decoration: none;
   font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: 0.88rem;
-  box-shadow: 0 4px 16px rgba(10,128,128,0.3);
-  transition: all 0.25s;
-}
-
-.padlet-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,128,128,0.35); }
-
-.doc-link {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--blue), #1a4d8a);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: 0.85rem;
-  box-shadow: 0 4px 14px rgba(37,99,168,0.25);
-  transition: all 0.25s;
-}
-
-.doc-link:hover { transform: translateY(-2px); }
-
-/* ── NAV BUTTONS ── */
-.nav-btns {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px dashed var(--teal-mid);
-}
-
-.nav-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
+  font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
   transition: all 0.2s;
-  box-shadow: var(--shadow-sm);
 }
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); color: white; }
+.cta-teal   { background: var(--teal);   }
+.cta-blue   { background: var(--blue);   }
+.cta-gold   { background: var(--gold);   }
 
-.nav-btn:hover { transform: translateY(-2px); }
-.btn-prev { background: #eee; color: #666; }
-.btn-prev::before { content: "← "; }
-.btn-next { background: var(--teal); color: white; }
-.btn-next::after { content: " →"; }
-.btn-next.pink { background: var(--pink); }
-.btn-next.purple { background: var(--purple); }
-.btn-next.blue { background: var(--blue); }
-.btn-next.gold { background: var(--gold); }
+/* CHECKLIST */
+.checklist { background: white; border: 2px solid var(--teal); border-radius: 4px; padding: 18px; margin: 20px 0; }
+.checklist.pink   { border-color: var(--pink);   }
+.checklist.purple { border-color: var(--purple); }
+.checklist.blue   { border-color: var(--blue);   }
+.checklist.gold   { border-color: var(--gold);   }
+.checklist h3 { font-size: 0.78rem; text-align: center; border-bottom: 2px dashed var(--teal); padding-bottom: 10px; margin-bottom: 14px; color: var(--teal); }
+.checklist.pink h3   { color: var(--pink);   border-color: var(--pink);   }
+.checklist.purple h3 { color: var(--purple); border-color: var(--purple); }
+.checklist.blue h3   { color: var(--blue);   border-color: var(--blue);   }
+.checklist.gold h3   { color: var(--gold);   border-color: var(--gold);   }
+.ci { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.chk { width: 20px; height: 20px; border: 2px solid var(--teal); border-radius: 3px; flex-shrink: 0; cursor: pointer; position: relative; margin-top: 2px; transition: background 0.2s; }
+.checklist.pink .chk   { border-color: var(--pink);   }
+.checklist.purple .chk { border-color: var(--purple); }
+.checklist.blue .chk   { border-color: var(--blue);   }
+.checklist.gold .chk   { border-color: var(--gold);   }
+.chk.checked { background: var(--teal); }
+.checklist.pink .chk.checked   { background: var(--pink);   }
+.checklist.purple .chk.checked { background: var(--purple); }
+.checklist.blue .chk.checked   { background: var(--blue);   }
+.checklist.gold .chk.checked   { background: var(--gold);   }
+.chk.checked::after { content: '✓'; position: absolute; color: white; font-size: 12px; font-weight: 700; top: 0; left: 3px; }
+.cl { font-family: 'Space Mono', monospace; font-size: 0.76rem; font-weight: 700; color: var(--teal); padding-top: 1px; }
+.checklist.pink .cl   { color: var(--pink);   }
+.checklist.purple .cl { color: var(--purple); }
+.checklist.blue .cl   { color: var(--blue);   }
+.checklist.gold .cl   { color: var(--gold);   }
 
-/* ── NOTICE ── */
-.notice {
-  background: var(--pink-light);
-  border-left: 4px solid var(--pink);
-  border-radius: 0 8px 8px 0;
-  padding: 9px 13px;
-  margin: 0.7rem 0;
-  font-size: 0.86rem;
+/* NAV BUTTONS */
+.nav-btns { display: flex; justify-content: space-between; margin: 28px 0 10px; gap: 10px; }
+.nav-btn {
+  padding: 10px 20px; border: 2px solid var(--ink); border-radius: 3px;
+  font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.05em;
 }
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.btn-prev { background: white; color: var(--ink); }
+.btn-next { background: var(--ink); color: white; }
+.btn-next.pink   { background: var(--pink);   border-color: var(--pink);   }
+.btn-next.purple { background: var(--purple); border-color: var(--purple); }
+.btn-next.gold   { background: var(--gold);   border-color: var(--gold);   }
+.nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
 
-.notice strong { color: var(--pink); }
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; padding: 20px; cursor: zoom-out; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 88vw; max-height: 78vh; border: 3px solid white; border-radius: 3px; object-fit: contain; }
+.lb-cap { color: #ccc; font-family: 'Space Mono', monospace; font-size: 0.72rem; margin-top: 10px; }
+.lb-close { position: absolute; top: 14px; right: 20px; color: white; font-size: 2.2rem; cursor: pointer; background: none; border: none; opacity: 0.7; }
+.lb-close:hover { opacity: 1; color: var(--pink); }
 
-/* ── GLITCH STEPS SPECIFIC ── */
-.glitch-steps {
-  counter-reset: glitch;
-  margin: 1rem 0;
-}
+footer { text-align: center; padding: 20px 0 10px; border-top: 1px dashed var(--warm-mid); margin-top: 40px; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--concrete); }
 
-/* ── REFLECTION GRID ── */
-.reflection-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 1rem 0;
-}
-
-.reflection-card {
-  background: white;
-  border: 2px solid var(--blue);
-  border-radius: 10px;
-  padding: 14px;
-  border-top: 4px solid var(--blue);
-}
-
-.reflection-card h3 { color: var(--blue); font-size: 0.8rem; margin-top: 0; }
-.reflection-card p { font-size: 0.78rem; color: #666; margin: 0; }
-
-/* ── FOOTER ── */
-footer {
-  text-align: center;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px dashed var(--teal-mid);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
-  color: #aaa;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 680px) {
-  .section { padding: 1.5rem 1.2rem; }
-  .site-header { padding: 1.8rem 1.5rem 1.5rem; }
-  .site-header h1 { font-size: 1.3rem; }
-  .tab-btn .tab-label { display: none; }
-  .reflection-grid { grid-template-columns: 1fr; }
-  .tools-grid { grid-template-columns: 1fr; }
-  .progress-wrap { padding: 0.6rem 1.5rem 0; }
-}
-
-@media (max-width: 480px) {
-  body { padding: 20px 8px 60px; }
-  .tab-btn { padding: 10px 4px; }
+@media (max-width: 600px) {
+  .container { padding: 20px 14px 40px; }
+  .site-header { grid-template-columns: 1fr; }
+  .header-meta { text-align: left; }
 }
 </style>
 </head>
 <body>
 
+<div class="lightbox" id="lightbox" onclick="closeLB()">
+  <button class="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
 <div class="container">
 
-  <!-- ══ HEADER ══ -->
   <header class="site-header">
-    <div class="header-label">Rotation 1 · Thursday · IELS Level 5</div>
-    <h1>✦ Photoshop Rotation</h1>
-    <div class="header-sub">Cutting & Editing · Creative Glitch · Progress Documentation</div>
-    <div class="timing-row">
-      <span class="t-pill">⏱ 2.5 hrs total</span>
-      <span class="t-pill">✂️ Task 1 · 45 min</span>
-      <span class="t-pill">✨ Task 2 · 45 min</span>
-      <span class="t-pill">📝 Task 3 · 30 min</span>
-      <span class="t-pill">📤 Submit</span>
+    <div>
+      <div class="header-eyebrow">Rotation 1 · Thursday · IELS Level 5</div>
+      <h1>Photoshop<br><em>Rotation</em></h1>
+    </div>
+    <div class="header-meta">
+      2.5 hours<br>↓<br>3 tasks
     </div>
   </header>
 
-  <!-- ══ PROGRESS ══ -->
-  <div class="progress-wrap">
-    <div class="progress-bar-outer">
-      <div class="progress-bar-inner" id="progressBar"></div>
-    </div>
+  <div class="timing-strip">
+    <span class="t-badge" style="background:var(--teal-light);color:var(--teal);border-color:var(--teal);">⏱ 2.5 hrs total</span>
+    <span class="t-badge" style="background:var(--teal-light);color:var(--teal);border-color:var(--teal);">✂️ Task 1 · 45 min</span>
+    <span class="t-badge" style="background:var(--pink-light);color:var(--pink);border-color:var(--pink);">✨ Task 2 · 45 min</span>
+    <span class="t-badge" style="background:var(--purple-light);color:var(--purple);border-color:var(--purple);">📝 Task 3 · 30 min</span>
+    <span class="t-badge" style="background:var(--gold-light);color:var(--gold);border-color:var(--gold);">📤 Submit</span>
   </div>
 
-  <!-- ══ TAB NAV ══ -->
-  <nav class="tab-nav">
-    <button class="tab-btn active" data-tab="overview">
-      <span class="tab-icon">🏠</span>
-      <span class="tab-label">Overview</span>
-      <span class="tab-time">Start here</span>
-    </button>
-    <button class="tab-btn" data-tab="task1">
-      <span class="tab-icon">✂️</span>
-      <span class="tab-label">Task 1</span>
-      <span class="tab-time">45 min</span>
-    </button>
-    <button class="tab-btn" data-tab="task2">
-      <span class="tab-icon">✨</span>
-      <span class="tab-label">Task 2</span>
-      <span class="tab-time">45 min</span>
-    </button>
-    <button class="tab-btn" data-tab="task3">
-      <span class="tab-icon">📝</span>
-      <span class="tab-label">Task 3</span>
-      <span class="tab-time">30 min</span>
-    </button>
-    <button class="tab-btn" data-tab="submit">
-      <span class="tab-icon">📤</span>
-      <span class="tab-label">Submit</span>
-      <span class="tab-time">Padlet</span>
-    </button>
-  </nav>
+  <div class="progress-wrap">
+    <div class="progress-fill" id="progressBar" style="width:10%"></div>
+  </div>
 
-  <!-- ══════════════ OVERVIEW ══════════════ -->
-  <section id="overview" class="section active">
-    <div class="s-banner b-teal">🏠 Welcome — What You Will Do Today</div>
+  <div class="nav-grid">
+    <div class="nav-block active" data-sec="overview"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span><span class="nav-sub">Start here</span></div>
+    <div class="nav-block" data-sec="task1"><span class="nav-icon">✂️</span><span class="nav-label">Task 1</span><span class="nav-sub">45 min</span></div>
+    <div class="nav-block" data-sec="task2"><span class="nav-icon">✨</span><span class="nav-label">Task 2</span><span class="nav-sub">45 min</span></div>
+    <div class="nav-block" data-sec="task3"><span class="nav-icon">📝</span><span class="nav-label">Task 3</span><span class="nav-sub">30 min</span></div>
+    <div class="nav-block" data-sec="submit"><span class="nav-icon">📤</span><span class="nav-label">Submit</span><span class="nav-sub">Padlet</span></div>
+  </div>
 
-    <!-- STUDENT EXAMPLES HERO -->
-    <div style="margin-bottom:1.5rem;">
-      <p style="margin-bottom:0.8rem;">Use <strong>Photoshop skills</strong> to digitally edit your work, applying the techniques from today's video tutorials. Share your final piece on the Padlet wall by the end of the session. <strong>Outstanding work will be showcased.</strong></p>
+  <!-- ═══ OVERVIEW ═══ -->
+  <div id="overview" class="section active">
 
-      <h2 style="margin-top:0.5rem;">What You Can Create — Student Examples</h2>
-      <p style="font-size:0.82rem;color:#555;margin-bottom:1rem;">These were made by students in previous sessions using the same glitch and text techniques you will learn today.</p>
+    <div class="section-banner b-teal">🏠 What You Will Do Today</div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:1rem;">
+    <p>Use Photoshop to edit your work and create a glitch text composition. Upload your outcomes to the Padlet wall by the end of the session. <strong>Outstanding work will be showcased.</strong></p>
 
-        <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/luca_monstead.jpg','Luca Monstead')">
-          <img src="images/student-examples/luca_monstead.jpg" alt="Student work by Luca Monstead"
-            style="width:100%;height:220px;object-fit:cover;display:block;" onerror="this.style.display='none'">
-          <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
-            <strong>Luca Monstead</strong> — Glitch & Text Exercise
-          </div>
-        </div>
+    <h2>Student Examples</h2>
+    <p style="font-size:0.82rem;color:var(--concrete);margin-bottom:1rem;">Made by students in previous sessions — use as inspiration.</p>
 
-        <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/juliette.png','Juliette')">
-          <img src="images/student-examples/juliette.png" alt="Student work by Juliette"
-            style="width:100%;height:220px;object-fit:cover;display:block;" onerror="this.style.display='none'">
-          <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
-            <strong>Juliette Prezi</strong> — Glitch & Text Exercise
-          </div>
-        </div>
-
-        <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/Balnur_Kuanbek.jpg','Balnur Kuanbek')">
-          <img src="images/student-examples/Balnur_Kuanbek.jpg" alt="Student work by Balnur Kuanbek"
-            style="width:100%;height:220px;object-fit:cover;display:block;" onerror="this.style.display='none'">
-          <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
-            <strong>Balnur Kuanbek</strong> — Glitch & Text Exercise
-          </div>
-        </div>
-
-        <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/Mickey_Zhuo.jpg','Mickey Zhuo')">
-          <img src="images/student-examples/Mickey_Zhuo.jpg" alt="Student work by Mickey Zhuo"
-            style="width:100%;height:220px;object-fit:cover;display:block;" onerror="this.style.display='none'">
-          <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
-            <strong>Mickey Zhuo</strong> — Glitch & Text Exercise
-          </div>
-        </div>
-
+    <div class="eg-grid">
+      <div class="eg-card" onclick="openLB('images/student-examples/luca_monstead.jpg','Luca Monstead')">
+        <img src="images/student-examples/luca_monstead.jpg" alt="Luca Monstead" onerror="this.style.display='none'">
+        <div class="eg-cap">Luca Monstead — Glitch &amp; Text</div>
+      </div>
+      <div class="eg-card" onclick="openLB('images/student-examples/juliette.png','Juliette Prezi')">
+        <img src="images/student-examples/juliette.png" alt="Juliette Prezi" onerror="this.style.display='none'">
+        <div class="eg-cap">Juliette Prezi — Glitch &amp; Text</div>
+      </div>
+      <div class="eg-card" onclick="openLB('images/student-examples/Balnur_Kuanbek.jpg','Balnur Kuanbek')">
+        <img src="images/student-examples/Balnur_Kuanbek.jpg" alt="Balnur Kuanbek" onerror="this.style.display='none'">
+        <div class="eg-cap">Balnur Kuanbek — Glitch &amp; Text</div>
+      </div>
+      <div class="eg-card" onclick="openLB('images/student-examples/Mickey_Zhuo.jpg','Mickey Zhuo')">
+        <img src="images/student-examples/Mickey_Zhuo.jpg" alt="Mickey Zhuo" onerror="this.style.display='none'">
+        <div class="eg-cap">Mickey Zhuo — Glitch &amp; Text</div>
       </div>
     </div>
 
-    <!-- TASK CARDS -->
+    <div class="diagonal-rule"></div>
+
+    <h2>Today's Tasks</h2>
     <div class="overview-grid">
       <div class="ov-card ov-t1" onclick="goTo('task1')">
         <div class="ov-icon">✂️</div>
         <h4>Task 1 · 45 min</h4>
-        <p>Cutting & Editing Objects — Object Selection, Remove Tool, Pen Tool</p>
+        <p>Cutting &amp; editing — Object Selection, Remove Tool, Pen Tool</p>
       </div>
       <div class="ov-card ov-t2" onclick="goTo('task2')">
         <div class="ov-icon">✨</div>
         <h4>Task 2 · 45 min</h4>
-        <p>Creative Text & Glitch — keywords, rasterize, wave distortion</p>
+        <p>Creative text &amp; glitch — keywords, rasterize, wave distortion</p>
       </div>
       <div class="ov-card ov-t3" onclick="goTo('task3')">
         <div class="ov-icon">📝</div>
         <h4>Task 3 · 30 min</h4>
-        <p>Document & Reflect — Progress Report PDF for Padlet</p>
+        <p>Document &amp; reflect — Progress Report PDF for Padlet</p>
       </div>
       <div class="ov-card ov-sub" onclick="goTo('submit')">
         <div class="ov-icon">📤</div>
         <h4>Submit</h4>
-        <p>Upload your PDF and JPEG outcomes to Padlet</p>
+        <p>Upload JPEG outcomes and PDF to Padlet</p>
       </div>
     </div>
 
-    <h2>Before You Start</h2>
     <div class="tip-box">
-      <h4>💡 Set Up Checklist</h4>
+      <h4>💡 Before You Start</h4>
       <ul>
-        <li>Open Photoshop — create new document: <strong>A3 Landscape · 420×297mm · 300 dpi · CMYK · White background</strong></li>
-        <li>Have a scanned image or photo ready to work with</li>
+        <li>Open Photoshop → <strong>A3 Landscape · 420×297mm · 300 dpi · CMYK · White background</strong></li>
+        <li>Have a scanned image or photo ready</li>
         <li>Have your artist research folder open</li>
-        <li>Keyboard shortcut tip — <span class="key">Shift + key</span> cycles through tool sub-groups</li>
       </ul>
     </div>
 
-    <h2>Tools You Will Use Today</h2>
+    <h2>Tools You Will Use</h2>
     <div class="tools-grid">
       <div class="tool-card">
-        <h3>✂️ Cutting & Editing</h3>
+        <h3>✂️ Cutting &amp; Editing</h3>
         <ul>
-          <li><strong>Object Selection Tool (W)</strong></li>
+          <li><strong>Object Selection (W)</strong></li>
           <li><strong>Remove Tool (J)</strong></li>
           <li><strong>Pen Tool (P)</strong></li>
           <li>Content-Aware Fill</li>
         </ul>
       </div>
       <div class="tool-card pink">
-        <h3>✨ Glitch & Text</h3>
+        <h3>✨ Glitch &amp; Text</h3>
         <ul>
           <li><strong>Type Tool (T)</strong></li>
           <li><strong>Rectangular Marquee (M)</strong></li>
@@ -925,85 +645,79 @@ footer {
       <div class="tool-card purple">
         <h3>⌨️ Key Shortcuts</h3>
         <ul>
-          <li><span class="key">Cmd/Ctrl+J</span> — Duplicate layer</li>
-          <li><span class="key">Cmd/Ctrl+T</span> — Free Transform</li>
-          <li><span class="key">Cmd/Ctrl+E</span> — Merge layers</li>
-          <li><span class="key">Cmd/Ctrl+D</span> — Deselect</li>
+          <li><span class="key">Cmd/Ctrl+J</span> Duplicate layer</li>
+          <li><span class="key">Cmd/Ctrl+T</span> Free Transform</li>
+          <li><span class="key">Cmd/Ctrl+E</span> Merge layers</li>
+          <li><span class="key">Cmd/Ctrl+D</span> Deselect</li>
         </ul>
       </div>
     </div>
 
     <div class="nav-btns">
-      <button class="nav-btn btn-prev" disabled>—</button>
-      <button class="nav-btn btn-next" onclick="goTo('task1')">Task 1: Cutting & Editing</button>
+      <button class="nav-btn btn-prev" disabled>← Previous</button>
+      <button class="nav-btn btn-next" onclick="goTo('task1')">Task 1: Cutting &amp; Editing →</button>
     </div>
-  </section>
+  </div>
 
-  <!-- ══════════════ TASK 1 ══════════════ -->
-  <section id="task1" class="section">
-    <div class="s-banner b-teal">✂️ Task 1 — Cutting & Editing Objects <span style="font-size:0.76rem;font-weight:400;opacity:0.75;margin-left:auto;">45 min</span></div>
+  <!-- ═══ TASK 1 ═══ -->
+  <div id="task1" class="section">
 
-    <p>Learn to <strong>remove or cut objects cleanly</strong> using three essential Photoshop tools. Each tool suits different situations — choose based on complexity.</p>
+    <div class="section-banner b-teal">✂️ Task 1 — Cutting &amp; Editing Objects <span style="font-size:0.7rem;font-weight:400;opacity:0.8;margin-left:auto;">45 min</span></div>
 
     <div class="info-box">
       <strong>Document setup:</strong> File → New → A3 Landscape · 420×297mm · 300 dpi · CMYK
     </div>
 
     <h2>The Three Tools</h2>
-
     <div class="tools-grid">
       <div class="tool-card">
-        <h3>Object Selection Tool (W)</h3>
-        <p style="font-size:0.82rem;color:#555;margin:4px 0 8px;">Best for: whole objects on clear backgrounds</p>
+        <h3>Object Selection (W)</h3>
+        <p style="font-size:0.78rem;color:var(--concrete);margin:2px 0 6px;">Best for whole objects on clear backgrounds</p>
         <ul>
           <li>Hover to preview blue highlight</li>
-          <li>Click or drag a box around the object</li>
-          <li>Press Delete → Content-Aware Fill</li>
-          <li>Shift/Option to add or subtract areas</li>
+          <li>Click or drag to select</li>
+          <li>Delete → Content-Aware Fill</li>
+          <li>Shift/Option to add or subtract</li>
         </ul>
       </div>
       <div class="tool-card pink">
         <h3>Remove Tool (J)</h3>
-        <p style="font-size:0.82rem;color:#555;margin:4px 0 8px;">Best for: small marks, blemishes, distractions</p>
+        <p style="font-size:0.78rem;color:var(--concrete);margin:2px 0 6px;">Best for small marks and distractions</p>
         <ul>
-          <li>Choose from Contextual Task Bar or <span class="key">Shift+J</span></li>
+          <li><span class="key">Shift+J</span> to cycle to it</li>
           <li>Brush over unwanted elements</li>
-          <li>AI fills the space seamlessly</li>
+          <li>AI fills the space automatically</li>
         </ul>
       </div>
       <div class="tool-card purple">
         <h3>Pen Tool (P)</h3>
-        <p style="font-size:0.82rem;color:#555;margin:4px 0 8px;">Best for: precise or complex edges</p>
+        <p style="font-size:0.78rem;color:var(--concrete);margin:2px 0 6px;">Best for precise or complex edges</p>
         <ul>
           <li>Click for straight points</li>
-          <li>Click and drag for curves</li>
-          <li>Hold <span class="key">Alt/Opt</span> to change curve direction</li>
+          <li>Click + drag for curves</li>
+          <li><span class="key">Alt/Opt</span> to change curve direction</li>
           <li>Right-click → Make Selection</li>
         </ul>
       </div>
     </div>
 
-    <h2>Step-by-Step — click each step to expand</h2>
-
+    <h2>Steps — click to expand</h2>
     <div class="steps-list">
 
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">1</div>
           <div class="step-title-text">Prepare Your Document</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
           <div class="vid-wrap">
-            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=ffbed849-e53d-4504-b1a0-b45700a1db18&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all"
-              allowfullscreen allow="autoplay"
-              aria-label="Document setup demo">
-            </iframe>
+            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=ffbed849-e53d-4504-b1a0-b45700a1db18&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all" allowfullscreen allow="autoplay"></iframe>
           </div>
           <ul>
-            <li>File → New → <strong>A3 Landscape</strong> · 420×297mm · 300 dpi · CMYK</li>
-            <li>Add white background: Edit → Fill → White</li>
-            <li>Place your image: File → Place Embedded…</li>
+            <li>File → New → <strong>A3 Landscape</strong> · 300 dpi · CMYK</li>
+            <li>Edit → Fill → White background</li>
+            <li>File → Place Embedded to add your image</li>
           </ul>
         </div>
       </div>
@@ -1011,37 +725,35 @@ footer {
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">2</div>
-          <div class="step-title-text">Object Selection Tool — Quick Removal</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-title-text">Object Selection Tool</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <img src="images/object-selection-tool.jpg" alt="Object Selection Tool example" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
-          <img src="demos/object-selection-demo.gif" alt="Object Selection Tool demonstration" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px dashed #ea37a3;" onerror="this.style.display='none'">
+          <img src="images/object-selection-tool.jpg" alt="Object Selection Tool" class="step-img" onerror="this.style.display='none'">
+          <img src="demos/object-selection-demo.gif" alt="Object Selection demo" class="step-img highlight" onerror="this.style.display='none'">
           <ul>
-            <li>Select <strong>Object Selection Tool (W)</strong> from toolbar</li>
-            <li>Hover over your object — blue highlight previews the selection</li>
-            <li>Click or drag to select</li>
-            <li>Press Delete to activate Content-Aware Fill</li>
+            <li>Select <strong>Object Selection Tool (W)</strong></li>
+            <li>Hover — blue highlight previews the selection</li>
+            <li>Click or drag to select → Delete for Content-Aware Fill</li>
+            <li><span class="key">Shift</span>+click adds · <span class="key">Option</span>+click removes</li>
           </ul>
-          <div class="notice"><strong>Tip:</strong> Use Shift+click to add areas to your selection, Option+click to remove.</div>
-          <img src="images/object-selection-before-after.jpg" alt="Before and after Object Selection" style="max-width:100%;width:100%;display:block;margin:10px 0 0;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="images/object-selection-before-after.jpg" alt="Before and after" class="step-img" style="margin-top:8px;" onerror="this.style.display='none'">
         </div>
       </div>
 
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">3</div>
-          <div class="step-title-text">Remove Tool — Brush Away Small Elements</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-title-text">Remove Tool</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <img src="images/remove-tool-bar.jpg" alt="Remove Tool example" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
-          <img src="demos/remove-tool-demo.gif" alt="Remove Tool demonstration" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px dashed #ea37a3;" onerror="this.style.display='none'">
+          <img src="images/remove-tool-bar.jpg" alt="Remove Tool" class="step-img" onerror="this.style.display='none'">
+          <img src="demos/remove-tool-demo.gif" alt="Remove Tool demo" class="step-img highlight" onerror="this.style.display='none'">
           <ul>
-            <li>Select <strong>Remove Tool (J)</strong> from the Contextual Task Bar or use <span class="key">Shift+J</span> to cycle</li>
+            <li>Select <strong>Remove Tool (J)</strong> — or <span class="key">Shift+J</span> to cycle</li>
             <li>Adjust brush size to suit the element</li>
-            <li>Paint over logos, wires, dust, or unwanted objects</li>
-            <li>Photoshop AI fills the background area automatically</li>
+            <li>Paint over unwanted areas — Photoshop fills automatically</li>
           </ul>
         </div>
       </div>
@@ -1050,189 +762,125 @@ footer {
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">4</div>
           <div class="step-title-text">Pen Tool — Precise Cutouts</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <img src="images/pen-tool-cutout.jpg" alt="Pen Tool cutout example" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="images/pen-tool-cutout.jpg" alt="Pen Tool" class="step-img" onerror="this.style.display='none'">
           <ul>
-            <li>Select <strong>Pen Tool (P)</strong> from the toolbar group</li>
+            <li>Select <strong>Pen Tool (P)</strong></li>
             <li>Click to place anchor points around your object</li>
-            <li>Click and drag to create smooth curves</li>
-            <li>Hold <span class="key">Alt/Option</span> while dragging to change curve direction</li>
-            <li>Complete the path by clicking the start point</li>
-            <li>Right-click → <strong>Make Selection</strong> → use Delete or refine further</li>
+            <li>Click + drag for curves · <span class="key">Alt/Option</span> to adjust curve direction</li>
+            <li>Close the path → Right-click → <strong>Make Selection</strong></li>
           </ul>
           <div class="vid-wrap">
-            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=08dd7593-fcd1-4329-b0f9-b3760116496b&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all"
-              allowfullscreen allow="autoplay"
-              aria-label="Pen Tool Tutorial Video">
-            </iframe>
+            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=08dd7593-fcd1-4329-b0f9-b3760116496b&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all" allowfullscreen allow="autoplay"></iframe>
           </div>
-
-          <!-- PEN TOOL PRACTICE GAME -->
-          <div style="margin-top:1.2rem;background:var(--purple-light);border:2px solid var(--purple);border-radius:12px;padding:16px;">
-            <h3 style="color:var(--purple);margin:0 0 6px;font-size:0.84rem;">🎮 Pen Tool Curve Practice — Warm Up!</h3>
-            <p style="font-size:0.82rem;color:#555;margin-bottom:10px;">Practise your curves before touching Photoshop. Try to trace the blue shape as closely as possible — aim for a score of 7 or higher!</p>
-            <iframe 
-              src="https://hsstokes.github.io/photoshop-pen-tool-practice/"
-              style="width:100%;height:560px;border:none;border-radius:8px;background:white;"
-              title="Pen Tool Curve Practice Game">
-            </iframe>
+          <div style="margin-top:12px;background:var(--purple-light);border:2px solid var(--purple);border-radius:4px;padding:14px;">
+            <h3 style="color:var(--purple);margin:0 0 6px;">🎮 Pen Tool Practice Game</h3>
+            <p style="font-size:0.8rem;color:var(--concrete);margin-bottom:10px;">Practise your curves before working in Photoshop. Aim for a score of 7 or higher.</p>
+            <iframe src="https://hsstokes.github.io/photoshop-pen-tool-practice/" style="width:100%;height:520px;border:none;border-radius:3px;background:white;" title="Pen Tool Practice Game"></iframe>
           </div>
+        </div>
+      </div>
 
-        </div><!-- closes step-body -->
-      </div><!-- closes step-item -->
-
-    </div><!-- closes steps-list -->
+    </div>
 
     <div class="checklist">
       <h3>Task 1 Checklist ✓</h3>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Created A3 document · 300 dpi · CMYK</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Tried the Object Selection Tool to remove an element</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Used the Remove Tool to brush away a small detail</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Practised the Pen Tool for a precise edge</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Saved as PSD and exported as JPEG</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Screenshot taken for Progress Report</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Used Object Selection Tool to remove an element</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Used Remove Tool to brush away a small detail</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Practised Pen Tool for a precise edge</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Saved as PSD · exported as JPEG · screenshot taken</span></div>
     </div>
 
     <div class="nav-btns">
-      <button class="nav-btn btn-prev" onclick="goTo('overview')">Overview</button>
-      <button class="nav-btn btn-next pink" onclick="goTo('task2')">Task 2: Glitch & Text</button>
+      <button class="nav-btn btn-prev" onclick="goTo('overview')">← Overview</button>
+      <button class="nav-btn btn-next pink" onclick="goTo('task2')">Task 2: Glitch &amp; Text →</button>
     </div>
-  </section>
+  </div>
 
-  <!-- ══════════════ TASK 2 ══════════════ -->
-  <section id="task2" class="section">
-    <div class="s-banner b-pink">✨ Task 2 — Creative Text & Glitch <span style="font-size:0.76rem;font-weight:400;opacity:0.75;margin-left:auto;">45 min</span></div>
+  <!-- ═══ TASK 2 ═══ -->
+  <div id="task2" class="section">
 
-    <p>Use <strong>words from your artist research</strong> to create an image-based glitch composition. This explores how typography can express meaning, interruption, and emotion visually.</p>
+    <div class="section-banner b-pink">✨ Task 2 — Creative Text &amp; Glitch <span style="font-size:0.7rem;font-weight:400;opacity:0.8;margin-left:auto;">45 min</span></div>
 
-    <img src="glitch-sample.jpg" alt="Sample glitch composition" style="max-width:100%;width:100%;display:block;margin:1rem 0;border-radius:10px;border:2px solid #ea37a3;" onerror="this.style.display='none'">
+    <p>Use <strong>words from your artist research</strong> to create a glitch text composition — exploring how typography can express meaning visually.</p>
+
+    <img src="glitch-sample.jpg" alt="Sample glitch composition" style="width:100%;display:block;margin:0 0 16px;border:2px solid var(--pink);border-radius:3px;" onerror="this.style.display='none'">
 
     <div class="info-box pink">
-      <strong>Document setup:</strong> A3 Landscape · 420×297mm · 300 dpi · CMYK · White background
-    </div>
-
-    <h2>Student Examples — What You Can Achieve</h2>
-    <p style="font-size:0.82rem;color:#555;margin-bottom:1rem;">These outcomes were created by students in previous sessions — use them as inspiration for your own work today.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:1.5rem;">
-      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/luca_monstead.jpg','Luca Monstead')">
-        <img src="images/student-examples/luca_monstead.jpg"
-          style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
-        <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
-          <strong>Luca Monstead</strong>
-        </div>
-      </div>
-      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/juliette.png','Juliette Prezi')">
-        <img src="images/student-examples/juliette.png" alt="Juliette student work"
-          style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
-        <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
-          <strong>Juliette Prezi</strong>
-        </div>
-      </div>
-      <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/Balnur_Kuanbek.jpg','Balnur Kuanbek')">
-        <img src="images/student-examples/Balnur_Kuanbek.jpg" alt="Balnur Kuanbek student work"
-          style="width:100%;height:200px;object-fit:cover;display:block;" onerror="this.style.display='none'">
-        <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
-          <strong>Balnur Kuanbek</strong>
-        </div>
-      </div>
-    </div>
-
-    <div style="border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);cursor:pointer;" onclick="openLightbox('images/student-examples/Mickey_Zhuo.jpg','Mickey Zhuo')">
-      <img src="images/student-examples/Mickey_Zhuo.jpg" alt="Student work by Mickey Zhuo"
-        style="width:100%;height:220px;object-fit:cover;display:block;" onerror="this.style.display='none'">
-      <div style="background:var(--dark);color:white;padding:8px 12px;font-family:'Space Mono',monospace;font-size:0.72rem;">
-        <strong>Mickey Zhuo</strong> — Glitch & Text Exercise
-      </div>
-    </div>
-
-    <h2>Font Guidance</h2>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.5rem;">
-
-      <div style="background:#e8f5e9;border:2px solid #4caf50;border-radius:12px;padding:16px;">
-        <h3 style="color:#2e7d32;margin:0 0 10px;font-size:0.84rem;">✅ Recommended Fonts</h3>
-        <p style="font-size:0.8rem;color:#555;margin-bottom:10px;">These work well for research pages — clean, editorial, structured.</p>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="background:white;border-radius:6px;padding:8px 12px;font-family:'Courier New',monospace;font-size:0.9rem;border-left:3px solid #4caf50;">Andale Mono</div>
-          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #4caf50;">Orator Std</div>
-          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #4caf50;">Typewriter Condensed</div>
-          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #4caf50;">OldNewspaperTypes <span style="font-size:0.7rem;color:#888;">— subheadings &amp; titles</span></div>
-        </div>
-        <p style="font-size:0.75rem;color:#555;margin-top:10px;">You can also download fonts from <a href="https://www.dafont.com" target="_blank" style="color:#2e7d32;">dafont.com</a> or <a href="https://fonts.google.com" target="_blank" style="color:#2e7d32;">fonts.google.com</a> — on your own computer only due to admin restrictions.</p>
-      </div>
-
-      <div style="background:#ffebee;border:2px solid #e53935;border-radius:12px;padding:16px;">
-        <h3 style="color:#c62828;margin:0 0 10px;font-size:0.84rem;">🚫 Banned Fonts — Do Not Use</h3>
-        <p style="font-size:0.8rem;color:#555;margin-bottom:10px;">These are not appropriate for academic design work.</p>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #e53935;text-decoration:line-through;color:#aaa;">Chalkboard</div>
-          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #e53935;text-decoration:line-through;color:#aaa;">Bradley Hand</div>
-          <div style="background:white;border-radius:6px;padding:8px 12px;font-size:0.9rem;border-left:3px solid #e53935;text-decoration:line-through;color:#aaa;">Chalkduster</div>
-        </div>
-        <div class="notice" style="margin-top:10px;font-size:0.8rem;"><strong>Why?</strong> These fonts undermine the visual quality and editorial feel of your research page. They read as informal and unprofessional in this context.</div>
-      </div>
-
+      <strong>Document setup:</strong> A3 Landscape · 300 dpi · CMYK · White background
     </div>
 
     <h2>Artist References</h2>
-    <p>Study these artists before you begin — each explores text, meaning, and visual language in distinctive ways.</p>
-
+    <p style="font-size:0.82rem;color:var(--concrete);">Study these artists before you begin.</p>
     <div class="artist-grid">
       <div class="artist-card">
-        <img src="images/mar-arza-thumb.jpg" alt="Mar Arza" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:2px solid #ea37a3;margin-bottom:8px;" onerror="this.style.display='none'">
+        <img src="images/mar-arza-thumb.jpg" alt="Mar Arza" onerror="this.style.display='none'">
         <h3>Mar Arza</h3>
-        <p>Explores the space between words — the unsaid potential in text.</p>
+        <p>The unsaid potential in text — space between words.</p>
       </div>
       <div class="artist-card">
-        <img src="images/tsilli-pines-thumb.jpg" alt="Tsilli Pines" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:2px solid #ea37a3;margin-bottom:8px;" onerror="this.style.display='none'">
+        <img src="images/tsilli-pines-thumb.jpg" alt="Tsilli Pines" onerror="this.style.display='none'">
         <h3>Tsilli Pines</h3>
-        <p>How numbers and symbols shape human thought and perception.</p>
+        <p>Numbers and symbols shaping human thought.</p>
       </div>
       <div class="artist-card">
-        <img src="images/Manita Songserm-thumb.jpg" alt="Manita Songserm" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:2px solid #ea37a3;margin-bottom:8px;" onerror="this.style.display='none'">
+        <img src="images/Manita Songserm-thumb.jpg" alt="Manita Songserm" onerror="this.style.display='none'">
         <h3>Manita Songserm</h3>
-        <p>Typography and music — text as rhythm, movement, and layered structure.</p>
+        <p>Text as rhythm and movement — typography meets music.</p>
       </div>
       <div class="artist-card">
-        <img src="images/Jennifer Sterling.jpg" alt="Jennifer Sterling" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:2px solid #ea37a3;margin-bottom:8px;" onerror="this.style.display='none'">
+        <img src="images/Jennifer Sterling.jpg" alt="Jennifer Sterling" onerror="this.style.display='none'">
         <h3>Jennifer Sterling</h3>
-        <p>Designer, artist, typographer — the politics of visual language.</p>
+        <p>The politics of visual language and type.</p>
       </div>
       <div class="artist-card">
-        <img src="images/Xu Bing-thumb.jpg" alt="Xu Bing" style="width:100%;height:100px;object-fit:cover;border-radius:8px;border:2px solid #ea37a3;margin-bottom:8px;" onerror="this.style.display='none'">
+        <img src="images/Xu Bing-thumb.jpg" alt="Xu Bing" onerror="this.style.display='none'">
         <h3>Xu Bing</h3>
-        <p>Language systems, abstraction, and code through typographic forms.</p>
+        <p>Language, abstraction and code through typographic forms.</p>
       </div>
     </div>
 
-    <h2>Step-by-Step — click each step to expand</h2>
+    <h2>Font Guide</h2>
+    <div class="font-grid">
+      <div class="font-box good">
+        <h3>✅ Recommended Fonts</h3>
+        <div class="font-sample" style="font-family:'Courier New',monospace;">Andale Mono</div>
+        <div class="font-sample">Orator Std</div>
+        <div class="font-sample">Typewriter Condensed</div>
+        <div class="font-sample">OldNewspaperTypes <span style="font-size:0.7rem;color:#888;">— titles</span></div>
+        <p style="font-size:0.74rem;color:#555;margin-top:8px;">Download more from <a href="https://www.dafont.com" target="_blank" style="color:#2e7d32;">dafont.com</a> or <a href="https://fonts.google.com" target="_blank" style="color:#2e7d32;">fonts.google.com</a> (own device only)</p>
+      </div>
+      <div class="font-box bad">
+        <h3>🚫 Do Not Use</h3>
+        <div class="font-sample">Chalkboard</div>
+        <div class="font-sample">Bradley Hand</div>
+        <div class="font-sample">Chalkduster</div>
+        <div class="notice" style="margin-top:8px;font-size:0.78rem;"><strong>Why?</strong> These fonts undermine the editorial quality of your research page.</div>
+      </div>
+    </div>
 
+    <h2>Steps — click to expand</h2>
     <div class="steps-list">
 
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">1</div>
           <div class="step-title-text">Select Your Keywords</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <img src="banner-step1-text-selection.jpg" alt="Keywords placed with monospaced fonts" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step1-text-selection.jpg" alt="Keywords placed with monospaced fonts" class="step-img" onerror="this.style.display='none'">
           <div class="vid-wrap">
-            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=307fa36c-358b-43c1-ab28-b45700ac98d7&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all"
-              allowfullscreen allow="autoplay"
-              aria-label="Select Your Keywords demo">
-            </iframe>
+            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=307fa36c-358b-43c1-ab28-b45700ac98d7&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all" allowfullscreen allow="autoplay"></iframe>
           </div>
           <ul>
-            <li>Choose a handful of <strong>words or short phrases</strong> from your artist research</li>
-            <li>Open a new Photoshop document — A3 landscape · 300 dpi</li>
-            <li>Use <strong>Type Tool (T)</strong> to type out your words</li>
-            <li>Try minimal, structured fonts: <em>Andale Mono · Orator Std · Typewriter Condensed</em></li>
+            <li>Choose a few <strong>words or short phrases</strong> from your artist research</li>
+            <li>Use <strong>Type Tool (T)</strong> — try Andale Mono · Orator Std · Typewriter Condensed</li>
           </ul>
-          <div class="notice"><strong>Why keywords?</strong> Short phrases isolate ideas and emotions — easier to explore visually than long blocks of text.</div>
+          <div class="notice"><strong>Why keywords?</strong> Short phrases are easier to explore visually than long blocks of text.</div>
         </div>
       </div>
 
@@ -1240,20 +888,16 @@ footer {
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">2</div>
           <div class="step-title-text">Rasterize and Duplicate</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <img src="banner-step2-rasterize.jpg" alt="Rasterized and duplicated layers" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step2-rasterize.jpg" alt="Rasterized and duplicated layers" class="step-img" onerror="this.style.display='none'">
           <div class="vid-wrap">
-            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=2594162f-11bc-4ccb-821b-b45700b2ec0e"
-              allowfullscreen allow="autoplay"
-              aria-label="Rasterized and duplicate demo">
-            </iframe>
+            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=2594162f-11bc-4ccb-821b-b45700b2ec0e" allowfullscreen allow="autoplay"></iframe>
           </div>
           <ul>
-            <li>In the Layers panel: right-click → <strong>Rasterize Type</strong></li>
-            <li>Duplicate the rasterized layer: <span class="key">Cmd/Ctrl+J</span> — keeps a backup</li>
-            <li>Work on the duplicate, not the original</li>
+            <li>Layers panel: right-click → <strong>Rasterize Type</strong></li>
+            <li>Duplicate with <span class="key">Cmd/Ctrl+J</span> — work on the copy, keep the original</li>
           </ul>
         </div>
       </div>
@@ -1261,22 +905,18 @@ footer {
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">3</div>
-          <div class="step-title-text">Create Glitches</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-title-text">Create the Glitch</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <img src="banner-step3-create-glitches.jpg" alt="Creating glitch strips" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step3-create-glitches.jpg" alt="Creating glitch strips" class="step-img" onerror="this.style.display='none'">
           <div class="vid-wrap">
-            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=5c471a7a-8bd8-4fb8-b69a-b45700b3f37c"
-              allowfullscreen allow="autoplay"
-              aria-label="Creating glitch strips demo">
-            </iframe>
+            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=5c471a7a-8bd8-4fb8-b69a-b45700b3f37c" allowfullscreen allow="autoplay"></iframe>
           </div>
           <ul>
-            <li>Use <strong>Rectangular Marquee Tool (M)</strong> to select thin horizontal strips of text</li>
-            <li>Press <span class="key">Cmd/Ctrl+J</span> to copy each strip to a new layer</li>
+            <li>Use <strong>Rectangular Marquee (M)</strong> to select thin horizontal strips of text</li>
+            <li><span class="key">Cmd/Ctrl+J</span> to copy each strip to a new layer</li>
             <li>Use <strong>Move Tool (V)</strong> to shift strips slightly left or right</li>
-            <li>Subtle displacement creates a glitch effect</li>
           </ul>
         </div>
       </div>
@@ -1285,21 +925,17 @@ footer {
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">4</div>
           <div class="step-title-text">Wave Distortion</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <img src="banner-step4-wave.jpg" alt="Wave distortion on text" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step4-wave.jpg" alt="Wave distortion on text" class="step-img" onerror="this.style.display='none'">
           <div class="vid-wrap">
-            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=61321955-67c9-49ab-9f94-b45700b581a3"
-              allowfullscreen allow="autoplay"
-              aria-label="Wave distortion on text demo">
-            </iframe>
+            <iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=61321955-67c9-49ab-9f94-b45700b581a3" allowfullscreen allow="autoplay"></iframe>
           </div>
           <ul>
-            <li>Select your strips and <strong>Merge Layers: <span class="key">Cmd/Ctrl+E</span></strong></li>
-            <li>Go to <strong>Filter → Distort → Wave</strong> for controlled ripple effects</li>
-            <li>Adjust wavelength, amplitude, and number of generators</li>
-            <li>Optionally add <strong>Filter → Noise → Add Noise</strong> for texture</li>
+            <li>Merge strips: <span class="key">Cmd/Ctrl+E</span></li>
+            <li><strong>Filter → Distort → Wave</strong> — adjust wavelength and amplitude</li>
+            <li>Optional: <strong>Filter → Noise → Add Noise</strong> for texture</li>
           </ul>
         </div>
       </div>
@@ -1307,33 +943,17 @@ footer {
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">5</div>
-          <div class="step-title-text">Integrate with Your Layout</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-title-text">Integrate and Save</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <img src="banner-step5-layout-integration.jpg" alt="Glitch text integrated in layout" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
+          <img src="banner-step5-layout-integration.jpg" alt="Glitch text integrated in layout" class="step-img" onerror="this.style.display='none'">
           <ul>
             <li>Position the glitch text within your A3 composition</li>
-            <li>Use as a background element or a feature component</li>
             <li>Align with your artist study or research theme</li>
-            <li>Keep the outcome <strong>meaningful and reflective</strong></li>
+            <li>Save as <strong>.PSD</strong> · export as <strong>.JPG</strong></li>
           </ul>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header" onclick="toggleStep(this)">
-          <div class="step-num">6</div>
-          <div class="step-title-text">Save and Screenshot</div>
-          <div class="step-toggle">▼</div>
-        </div>
-        <div class="step-body">
-          <img src="banner-step6-save-reflect.jpg" alt="Saving PSD and JPEG" style="max-width:100%;width:100%;display:block;margin:0 0 10px;border-radius:8px;border:2px solid #c0eeee;" onerror="this.style.display='none'">
-          <ul>
-            <li>Save as <strong>.PSD</strong> — all layers stay editable</li>
-            <li>Export as <strong>.JPG</strong> for Padlet upload</li>
-            <li>Take 1–2 screenshots of your process for the Progress Report</li>
-          </ul>
+          <img src="banner-step6-save-reflect.jpg" alt="Saving PSD and JPEG" class="step-img" style="margin-top:8px;" onerror="this.style.display='none'">
         </div>
       </div>
 
@@ -1342,44 +962,41 @@ footer {
     <div class="checklist pink">
       <h3>Task 2 Checklist ✓</h3>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Reviewed artist references</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Selected keywords from research</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Typed keywords using monospaced font</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Selected keywords · typed in monospaced font</span></div>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Rasterized and duplicated text layer</span></div>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Created glitch effect with Marquee + Move tools</span></div>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Applied Wave distortion filter</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Integrated into A3 layout · saved PSD and JPEG</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Screenshot taken for Progress Report</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Saved PSD · exported JPEG · screenshot taken</span></div>
     </div>
 
     <div class="nav-btns">
-      <button class="nav-btn btn-prev" onclick="goTo('task1')">Task 1</button>
-      <button class="nav-btn btn-next purple" onclick="goTo('task3')">Task 3: Progress Report</button>
+      <button class="nav-btn btn-prev" onclick="goTo('task1')">← Task 1</button>
+      <button class="nav-btn btn-next purple" onclick="goTo('task3')">Task 3: Progress Report →</button>
     </div>
-  </section>
+  </div>
 
-  <!-- ══════════════ TASK 3 ══════════════ -->
-  <section id="task3" class="section">
-    <div class="s-banner b-purple">📝 Task 3 — Document & Reflect <span style="font-size:0.76rem;font-weight:400;opacity:0.75;margin-left:auto;">30 min</span></div>
+  <!-- ═══ TASK 3 ═══ -->
+  <div id="task3" class="section">
 
-    <p>Complete your <strong>Progress Report</strong> — documenting your process and reflecting on what you learned. This is an assessed skill at Level 5.</p>
+    <div class="section-banner b-purple">📝 Task 3 — Document &amp; Reflect <span style="font-size:0.7rem;font-weight:400;opacity:0.8;margin-left:auto;">30 min</span></div>
 
     <div class="info-box purple">
-      <strong>Why reflect?</strong> Documentation shows how you learned, not just what you produced. Reflective writing demonstrates critical thinking — a key Level 5 outcome.
+      <strong>Why reflect?</strong> Documentation shows how you learned, not just what you made. Reflective writing is an assessed skill at Level 5.
     </div>
 
-    <h2>How to Complete Your Progress Report</h2>
+    <h2>Complete Your Progress Report</h2>
 
     <div class="steps-list">
+
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">1</div>
           <div class="step-title-text">Open the Progress Documentation Tool</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
-          <p>Click the button below to open the Progress Documentation Tool in a new tab.</p>
-          <div style="text-align:center;margin-top:12px;">
-            <a href="https://hsstokes.github.io/Progress_Documentation/" target="_blank" class="doc-link">📝 Open Progress Documentation Tool →</a>
+          <div style="text-align:center;margin:12px 0;">
+            <a href="https://hsstokes.github.io/Progress_Documentation/" target="_blank" class="cta-btn cta-blue">📝 Open Progress Documentation Tool →</a>
           </div>
         </div>
       </div>
@@ -1387,14 +1004,14 @@ footer {
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">2</div>
-          <div class="step-title-text">Enter Your Name and Upload Screenshots</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-title-text">Enter Name + Upload Screenshots</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
           <ul>
             <li>Enter your full name</li>
-            <li>Upload <strong>2–3 screenshots</strong> from today's work — one from each task</li>
-            <li>Add a short caption to each screenshot describing what it shows</li>
+            <li>Upload <strong>2–3 screenshots</strong> — one from each task</li>
+            <li>Add a short caption to each</li>
           </ul>
         </div>
       </div>
@@ -1402,34 +1019,17 @@ footer {
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
           <div class="step-num">3</div>
-          <div class="step-title-text">Rate Your Confidence</div>
-          <div class="step-toggle">▼</div>
-        </div>
-        <div class="step-body">
-          <ul>
-            <li>1 — Just starting</li>
-            <li>2 — Getting there</li>
-            <li>3 — Confident</li>
-            <li>4 — Could teach others</li>
-          </ul>
-          <p>Be honest — this helps you track your progress over the course.</p>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-header" onclick="toggleStep(this)">
-          <div class="step-num">4</div>
           <div class="step-title-text">Answer the Four Reflection Questions</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
           <div class="reflection-grid">
             <div class="reflection-card">
               <h3>1. Techniques practised</h3>
-              <p>Which tools did you use? What felt new or challenging?</p>
+              <p>Which tools did you use? What felt new?</p>
             </div>
             <div class="reflection-card">
-              <h3>2. Challenges & solutions</h3>
+              <h3>2. Challenges &amp; solutions</h3>
               <p>Where did you get stuck? How did you work through it?</p>
             </div>
             <div class="reflection-card">
@@ -1438,14 +1038,14 @@ footer {
             </div>
             <div class="reflection-card">
               <h3>4. Next time</h3>
-              <p>What would you do differently? What will you explore further?</p>
+              <p>What would you do differently?</p>
             </div>
           </div>
-          <div class="tip-box" style="margin-top:12px;">
-            <h4>💡 Level 5 Reflection Tips</h4>
+          <div class="tip-box" style="margin-top:10px;">
+            <h4>💡 Level 5 Reflection</h4>
             <ul>
-              <li>Be <strong>specific</strong> — name actual tools and decisions you made</li>
-              <li>Use <strong>evaluative language</strong>: "this worked because…", "this was difficult because…"</li>
+              <li>Be <strong>specific</strong> — name tools and decisions</li>
+              <li>Use evaluative language: <em>"this worked because…"</em> / <em>"this was difficult because…"</em></li>
               <li>Aim for 3–5 sentences per question</li>
             </ul>
           </div>
@@ -1454,152 +1054,133 @@ footer {
 
       <div class="step-item">
         <div class="step-header" onclick="toggleStep(this)">
-          <div class="step-num">5</div>
+          <div class="step-num">4</div>
           <div class="step-title-text">Download Your PDF</div>
-          <div class="step-toggle">▼</div>
+          <div class="step-toggle">▶</div>
         </div>
         <div class="step-body">
           <ul>
             <li>Click <strong>Download Progress Report (PDF)</strong></li>
-            <li>Your PDF will include all screenshots, captions, and reflections</li>
-            <li>Save the file somewhere you can easily find it</li>
-            <li>You will upload this to Padlet in the Submit step</li>
+            <li>Save it somewhere easy to find — you will upload it to Padlet next</li>
           </ul>
         </div>
       </div>
+
     </div>
 
     <div class="checklist purple">
       <h3>Task 3 Checklist ✓</h3>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Opened the Progress Documentation Tool</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Entered name and uploaded 2–3 screenshots</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Added captions to each screenshot</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Uploaded 2–3 screenshots with captions</span></div>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Rated confidence level</span></div>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Answered all four reflection questions</span></div>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Downloaded Progress Report PDF</span></div>
     </div>
 
     <div class="nav-btns">
-      <button class="nav-btn btn-prev" onclick="goTo('task2')">Task 2</button>
-      <button class="nav-btn btn-next gold" onclick="goTo('submit')">Submit to Padlet</button>
+      <button class="nav-btn btn-prev" onclick="goTo('task2')">← Task 2</button>
+      <button class="nav-btn btn-next gold" onclick="goTo('submit')">Submit to Padlet →</button>
     </div>
-  </section>
+  </div>
 
-  <!-- ══════════════ SUBMIT ══════════════ -->
-  <section id="submit" class="section">
-    <div class="s-banner b-gold">📤 Submit — Upload to Padlet</div>
+  <!-- ═══ SUBMIT ═══ -->
+  <div id="submit" class="section">
+
+    <div class="section-banner b-gold">📤 Submit — Upload to Padlet</div>
 
     <div class="submit-box">
-      <h3 style="font-family:'Space Mono',monospace;color:var(--teal);margin-bottom:12px;">Upload These Three Items to Padlet</h3>
+      <h3 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:1.3rem;margin-bottom:14px;">Upload Three Items to Padlet</h3>
       <div class="submit-items">
         <div class="submit-item">
-          <h4>1. Cutting & Editing JPEG</h4>
-          <p>Your Task 1 Photoshop outcome — exported as JPEG</p>
+          <h4>1. Cutting &amp; Editing JPEG</h4>
+          <p>Task 1 outcome — exported as JPEG</p>
         </div>
         <div class="submit-item">
           <h4>2. Glitch Text JPEG</h4>
-          <p>Your Task 2 creative glitch composition — exported as JPEG</p>
+          <p>Task 2 composition — exported as JPEG</p>
         </div>
         <div class="submit-item">
           <h4>3. Progress Report PDF</h4>
-          <p>Downloaded from the Progress Documentation Tool</p>
+          <p>Downloaded from the documentation tool</p>
         </div>
       </div>
-      <a href="https://padlet.com/artslondon/rotation-1-thursday-7mzdokjrzkqnc1tu" target="_blank" class="padlet-btn">📤 Upload to Thursday Padlet →</a>
+      <a href="https://padlet.com/artslondon/rotation-1-thursday-7mzdokjrzkqnc1tu" target="_blank" class="cta-btn cta-teal">📤 Upload to Thursday Padlet →</a>
     </div>
+
+    <div class="diagonal-rule"></div>
 
     <h2>What You Learned Today</h2>
     <div class="info-box green">
       <ul>
-        <li><strong>Object Selection Tool</strong> — fast, intelligent object removal</li>
+        <li><strong>Object Selection Tool</strong> — fast intelligent object removal</li>
         <li><strong>Remove Tool</strong> — AI-powered small element erasure</li>
-        <li><strong>Pen Tool</strong> — precise path-based selection for complex edges</li>
-        <li><strong>Glitch technique</strong> — using filters and layer manipulation to create visual distortion</li>
-        <li><strong>Typography as expression</strong> — how words can convey emotion and meaning visually</li>
-        <li><strong>Reflective practice</strong> — documenting and evaluating your own learning process</li>
+        <li><strong>Pen Tool</strong> — precise path-based selection</li>
+        <li><strong>Glitch technique</strong> — filters and layer manipulation for visual distortion</li>
+        <li><strong>Typography as expression</strong> — how words convey meaning visually</li>
+        <li><strong>Reflective practice</strong> — documenting and evaluating your own learning</li>
       </ul>
-    </div>
-
-    <div class="tip-box">
-      <h4>🔗 Moodle</h4>
-      <a href="https://moodle.arts.ac.uk" target="_blank" style="color:var(--teal);font-weight:700;font-size:0.88rem;">Return to Moodle →</a><br>
-      <span style="font-size:0.76rem;color:#777;">Scroll to the bottom of your lesson page and click the Padlet wall to upload your work.</span>
     </div>
 
     <div class="checklist gold">
       <h3>Final Checklist ✓</h3>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Task 1 JPEG saved and ready to upload</span></div>
-      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Task 2 JPEG saved and ready to upload</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Task 1 JPEG ready to upload</span></div>
+      <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Task 2 JPEG ready to upload</span></div>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">Progress Report PDF downloaded</span></div>
       <div class="ci"><div class="chk" onclick="tog(this)"></div><span class="cl">All three items uploaded to Thursday Padlet</span></div>
     </div>
 
     <div class="nav-btns">
-      <button class="nav-btn btn-prev" onclick="goTo('task3')">Task 3</button>
-      <button class="nav-btn btn-next" onclick="goTo('overview')">Back to Start</button>
+      <button class="nav-btn btn-prev" onclick="goTo('task3')">← Task 3</button>
+      <button class="nav-btn btn-next" onclick="goTo('overview')">↩ Back to Start</button>
     </div>
-  </section>
-
-  <!-- LIGHTBOX — global -->
-  <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;flex-direction:column;padding:20px;cursor:zoom-out;">
-    <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:82vh;border-radius:8px;object-fit:contain;">
-    <p id="lb-caption" style="color:#ccc;font-family:'Space Mono',monospace;font-size:0.75rem;margin-top:10px;text-align:center;"></p>
-    <p style="color:#888;font-size:0.7rem;margin-top:4px;">Click anywhere to close</p>
   </div>
-
-  <footer>© 2025 Photoshop Rotation · Thursday · IELS Level 5 · Inclusive Micro-Learning Series</footer>
 
 </div>
 
+<footer>
+  © 2025 Photoshop Rotation · Thursday · IELS Level 5 · Inclusive Micro-Learning Series
+</footer>
+
 <script>
-// ── NAVIGATION ──
-const TABS = ['overview','task1','task2','task3','submit'];
-const PROGRESS = { overview: 10, task1: 30, task2: 55, task3: 80, submit: 100 };
+const sections = ['overview','task1','task2','task3','submit'];
+const progress  = { overview:10, task1:30, task2:55, task3:80, submit:100 };
+let current = 'overview';
 
 function goTo(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelector('[data-tab="'+id+'"]').classList.add('active');
-  document.getElementById('progressBar').style.width = PROGRESS[id] + '%';
+  document.getElementById(current).classList.remove('active');
+  document.querySelector(`[data-sec="${current}"]`).classList.remove('active');
+  current = id;
+  document.getElementById(current).classList.add('active');
+  document.querySelector(`[data-sec="${id}"]`).classList.add('active');
+  document.getElementById('progressBar').style.width = progress[id] + '%';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-document.querySelectorAll('.tab-btn').forEach(b => {
-  b.addEventListener('click', () => goTo(b.dataset.tab));
+document.querySelectorAll('.nav-block').forEach(b => {
+  b.addEventListener('click', () => goTo(b.dataset.sec));
 });
 
-// ── STEP ACCORDION ──
+function tog(el) { el.classList.toggle('checked'); }
+
 function toggleStep(header) {
   const body = header.nextElementSibling;
   const arrow = header.querySelector('.step-toggle');
   const isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
-  if (arrow) arrow.textContent = isOpen ? '▼' : '▲';
+  arrow.textContent = isOpen ? '▶' : '▼';
 }
 
-// ── CHECKLIST ──
-function tog(el) {
-  el.classList.toggle('checked');
-}
-
-// ── LIGHTBOX ──
-function openLightbox(src, caption) {
-  const lb = document.getElementById('lightbox');
+function openLB(src, cap) {
   document.getElementById('lb-img').src = src;
-  document.getElementById('lb-caption').textContent = caption;
-  lb.style.display = 'flex';
+  document.getElementById('lb-cap').textContent = cap;
+  document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
+function closeLB() {
+  document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-// ── INIT ──
-document.getElementById('progressBar').style.width = '10%';
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
 </script>
-
 </body>
 </html>
