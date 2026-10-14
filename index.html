@@ -377,20 +377,35 @@ li { font-size: 0.86rem; margin-bottom: 5px; line-height: 1.7; }
 .eg-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
 .eg-cap { padding: 7px 10px; font-family: 'Space Mono', monospace; font-size: 0.66rem; background: var(--ink); color: white; }
 
-/* ARTIST GRID */
-.artist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 1rem 0; }
+/* ARTIST GRID — bigger images, whole card is a link */
+.artist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 1rem 0; }
 .artist-card {
+  display: flex;
+  flex-direction: column;
   background: white;
   border: 2px solid var(--warm-mid);
   border-radius: 3px;
   padding: 12px;
   text-align: center;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 400;
   transition: all 0.2s;
 }
-.artist-card:hover { border-color: var(--pink); transform: translateY(-3px); }
-.artist-card img { width: 100%; height: 90px; object-fit: cover; border-radius: 2px; border: 2px solid var(--pink); margin-bottom: 6px; }
-.artist-card h3 { color: var(--pink); font-size: 0.76rem; margin: 0 0 3px; }
-.artist-card p { font-size: 0.7rem; color: var(--concrete); margin: 0; }
+.artist-card:hover { border-color: var(--pink); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); color: inherit; }
+.artist-card img { width: 100%; height: 170px; object-fit: cover; border-radius: 2px; border: 2px solid var(--pink); margin-bottom: 8px; }
+.artist-card h3 { color: var(--pink); font-size: 0.82rem; margin: 0 0 4px; }
+.artist-card p { font-size: 0.74rem; color: var(--concrete); margin: 0 0 8px; line-height: 1.5; }
+.artist-link {
+  margin-top: auto;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+}
+.artist-card:hover .artist-link { color: var(--pink); }
 
 /* FONT GUIDE */
 .font-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0; }
@@ -814,33 +829,38 @@ footer { text-align: center; padding: 20px 0 10px; border-top: 1px dashed var(--
     </div>
 
     <h2>Artist References</h2>
-    <p style="font-size:0.82rem;color:var(--concrete);">Study these artists before you begin.</p>
+    <p style="font-size:0.82rem;color:var(--concrete);">Study these artists before you begin. Click a card to see their work.</p>
     <div class="artist-grid">
-      <div class="artist-card">
+      <a class="artist-card" href="http://www.mararza.com/index.php?/2009/serie-statement/" target="_blank" rel="noopener">
         <img src="images/mar-arza-thumb.jpg" alt="Mar Arza" onerror="this.style.display='none'">
         <h3>Mar Arza</h3>
         <p>The unsaid potential in text — space between words.</p>
-      </div>
-      <div class="artist-card">
+        <span class="artist-link">View work ↗</span>
+      </a>
+      <a class="artist-card" href="https://zovuyomputa.blogspot.com/2014/04/tsilli-pines-figures.html" target="_blank" rel="noopener">
         <img src="images/tsilli-pines-thumb.jpg" alt="Tsilli Pines" onerror="this.style.display='none'">
         <h3>Tsilli Pines</h3>
         <p>Numbers and symbols shaping human thought.</p>
-      </div>
-      <div class="artist-card">
+        <span class="artist-link">View work ↗</span>
+      </a>
+      <a class="artist-card" href="https://www.itsnicethat.com/articles/graphic-design-bangkok-manita-songserm-posters" target="_blank" rel="noopener">
         <img src="images/Manita Songserm-thumb.jpg" alt="Manita Songserm" onerror="this.style.display='none'">
         <h3>Manita Songserm</h3>
         <p>Text as rhythm and movement — typography meets music.</p>
-      </div>
-      <div class="artist-card">
+        <span class="artist-link">View work ↗</span>
+      </a>
+      <a class="artist-card" href="https://a-g-i.org/design/sterling-design" target="_blank" rel="noopener">
         <img src="images/Jennifer Sterling.jpg" alt="Jennifer Sterling" onerror="this.style.display='none'">
         <h3>Jennifer Sterling</h3>
         <p>The politics of visual language and type.</p>
-      </div>
-      <div class="artist-card">
+        <span class="artist-link">View work ↗</span>
+      </a>
+      <a class="artist-card" href="https://xubing.com/en" target="_blank" rel="noopener">
         <img src="images/Xu Bing-thumb.jpg" alt="Xu Bing" onerror="this.style.display='none'">
         <h3>Xu Bing</h3>
         <p>Language, abstraction and code through typographic forms.</p>
-      </div>
+        <span class="artist-link">View work ↗</span>
+      </a>
     </div>
 
     <h2>Font Guide</h2>
